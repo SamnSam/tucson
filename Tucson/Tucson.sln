@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BEDC421-B68F-4BF9-A0A1-1049ADD460DA}"
+	ProjectSection(SolutionItems) = preProject
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		Tucson.vsmdi = Tucson.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tucson.Core", "Tucson.Core\Tucson.Core.csproj", "{27C03F12-8546-49AB-93F8-2607A44A8D54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27C03F12-8546-49AB-93F8-2607A44A8D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C03F12-8546-49AB-93F8-2607A44A8D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C03F12-8546-49AB-93F8-2607A44A8D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C03F12-8546-49AB-93F8-2607A44A8D54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Tucson.Core\Tucson.Core.csproj
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://devtfs1:8080/tfs/database
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Tucson.UnitTests\\Tucson.UnitTests.csproj
+		SccProjectName1 = Tucson.UnitTests
+		SccLocalPath1 = Tucson.UnitTests
+		SccProjectUniqueName2 = Tucson.IntegrationTests\\Tucson.IntegrationTests.csproj
+		SccProjectName2 = Tucson.IntegrationTests
+		SccLocalPath2 = Tucson.IntegrationTests
+		SccProjectUniqueName3 = Tucson.Core\\Tucson.Core.csproj
+		SccProjectName3 = Tucson.Core
+		SccLocalPath3 = Tucson.Core
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Tucson.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

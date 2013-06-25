@@ -1,0 +1,1976 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tucson.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Tucson.AllowReadPreference">
+            <summary>
+            Flags to specify how reads should be performed within a repository
+            </summary>
+        </member>
+        <member name="F:Tucson.AllowReadPreference.Default">
+            <summary>
+            Data reads come from whatever the connection string says (eg: SlaveOk=true in mongo)
+            </summary>
+        </member>
+        <member name="F:Tucson.AllowReadPreference.MustBeCommitted">
+            <summary>
+            Data reads must come from committed data
+            </summary>
+        </member>
+        <member name="F:Tucson.AllowReadPreference.DirtyOk">
+            <summary>
+            Data reads can be dirty/uncommitted/replicated data
+            </summary>
+        </member>
+        <member name="T:Tucson.DisposableBase">
+            <summary>
+            Provides a simple base class for all IDisposable classes.  Implements standard Dispose() pattern.
+            </summary>
+        </member>
+        <member name="M:Tucson.DisposableBase.Finalize">
+            <summary>
+            Standard GC destructor, calls Dispose(false);
+            </summary>
+        </member>
+        <member name="M:Tucson.DisposableBase.Dispose">
+            <summary>
+            Disposes of class instance.
+            </summary>
+        </member>
+        <member name="M:Tucson.DisposableBase.Dispose(System.Boolean)">
+            <summary>
+            Implement your dispose method using this protected method.
+            </summary>
+            <param name="disposing">True if the user is explictly calling Dispose(), False if occurring during garbage collection</param>
+        </member>
+        <member name="T:Tucson.EFClient.NonKeyedRepository`1">
+            <summary>
+            Base class for implementing the Repository pattern over an Entity Framework based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="T:Tucson.EFClient.ReadOnlyRepository`1">
+            <summary>
+            Base class for implementing the read only repository pattern over an Entity Framework based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="T:Tucson.IReadOnlyRepository`1">
+            <summary>
+            Generic interface for implementing the Repository pattern over
+            business entities.
+            </summary>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="T:Tucson.IReadOnlyRepository">
+            <summary>
+            Generic interface for implementing the Repository pattern over
+            business entities.
+            </summary>
+        </member>
+        <member name="P:Tucson.IReadOnlyRepository.Timeout">
+            <summary>
+            Gets or sets a timeout for the repository
+            </summary>
+        </member>
+        <member name="P:Tucson.IReadOnlyRepository.ReadPreference">
+            <summary>
+            Gets or sets a flag to default to reading all data using potentially uncommitted/dirty reads
+            </summary>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.All">
+            <summary>
+            Returns the underlying entity set.
+            </summary>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.FilterBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Filters a sequence of entities based on an expression.
+            </summary>
+            <param name="expression">Expression for filtering entity set.</param>
+            <returns>IQueryable.</returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.FindBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="expression">Expression for finding an entity.  </param>
+            <returns><typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.PerformQuery``1(System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.PerformQuery``1(System.String,System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.PerformQueryForItem``1(System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepository`1.PerformQueryForItem``1(System.String,System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="F:Tucson.EFClient.ReadOnlyRepository`1.KeyName">
+            <summary>
+            The KeyName for all entities
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.#ctor(Tucson.EFClient.IContextFactory)">
+            <summary>
+            Instantiates a new Repository and database context for the entity.
+            </summary>
+            <param name="contextFactory">IContextFactory for the database.</param>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.SendToSplunk(System.String,System.String,System.Diagnostics.Stopwatch)">
+            <summary>
+            Sends a message to splunk, including the time.
+            </summary>
+            <param name="source">The source</param>
+            <param name="method"></param>
+            <param name="timer"></param>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.LoadProperty(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Loads a dependent property of an instance
+            </summary>
+            <param name="instance">The instance</param>
+            <param name="selector">An expression that returns the property to load</param>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.All">
+            <summary>
+            Returns the underlying ObjectSet.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.FilterBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Filters a sequence of entities based on a predicate.
+            </summary>
+            <param name="expression">Expression for filtering entity set.</param>
+            <returns>IQueryable.</returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.FindBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="expression">Expression for filtering entity set.</param>
+            <returns><typeparamref name="TEntity"/></returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.PerformQuery``1(System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.PerformQuery``1(System.String,System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.PerformQueryForItem``1(System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.PerformQueryForItem``1(System.String,System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.RetryAction``1(System.Func{``0},System.Int32)">
+            <summary>
+            retries an action up to 3 times
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="retryMax"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.EFClient.ReadOnlyRepository`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes of the Context and ContextFactory when disposing == true
+            </summary>
+            <param name="disposing">True when user is calling Dispose(), false if coming from GC</param>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.Timeout">
+            <summary>
+            Gets or sets a timeout for the repository (note: EF smallest timeout interval is seconds)
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.ReadPreference">
+            <summary>
+            Gets or sets a flag to default to reading all data using uncommitted reads
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.Context">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying DbContext object.
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.ObjectContext">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying DbContext object.
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.ContextFactory">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying ContextFactory object.
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.EntitySetName">
+            <summary>
+            Gets the EntitySetName, required for FindBy and other ObjectContext queries.  Note that DefaultContainerName must be specified during the constructor
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.Query">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying ObjectSet.
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.ReadOnlyRepository`1.ElementType">
+            <summary>
+            Gets the type of the element(s) that are returned when the
+            expression tree associated with this repository is executed.
+            </summary>
+        </member>
+        <member name="T:Tucson.IRepository`1">
+            <summary>
+            Generic interface for implementing the Repository pattern over
+            business entities.
+            </summary>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="M:Tucson.IRepository`1.Add(`0)">
+            <summary>
+            Adds an entity to the entity set.
+            </summary>
+            <param name="entity">Entity object to add.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds a collection of entities to the entity set.
+            </summary>
+            <param name="entities">A collection of entities of type <typeparamref name="TEntity"/>.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.Commit">
+            <summary>
+            Saves all changes made in this context to the underlying database.
+            </summary>
+        </member>
+        <member name="M:Tucson.IRepository`1.Delete(`0)">
+            <summary>
+            Removes an entity from the collection.
+            </summary>
+            <param name="entity">Entity object to remove.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes a collection of entities from the entity set.
+            </summary>
+            <param name="entities">A collection of entities of type <typeparamref name="TEntity"/>.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.Update(`0)">
+            <summary>
+            Updates the given entity in the collection.
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.AsyncAdd(`0)">
+            <summary>
+            Adds an entity to the entity set without waiting for the add to succeed or fail
+            </summary>
+            <param name="entity">Entity object to add.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.AsyncUpdate(`0)">
+            <summary>
+            Updates the given entity in the collection without waiting for the update to succeed or fail
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.IRepository`1.AsyncDelete(`0)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="entity">Entity to delete from the collection.</param>
+        </member>
+        <member name="P:Tucson.IRepository`1.AsyncSupported">
+            <summary>
+            Gets a value indicating whether this repository supports Asynchronous updates
+            </summary>
+        </member>
+        <member name="P:Tucson.IRepository`1.EnablePropertyChangeMonitor">
+            <summary>
+            Gets or sets a value indicating whether to perform property change monitoring (True by default for all Entity Framework objects)
+            </summary>
+        </member>
+        <member name="P:Tucson.IRepository`1.AutoCommit">
+            <summary>
+            Gets or sets a value indicating whether to perform auto commit
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.#ctor(Tucson.EFClient.IContextFactory)">
+            <summary>
+            Instantiates a new non-keyed Repository and database context for the entity.
+            </summary>
+            <param name="contextFactory">IContextFactory for the database.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Add(`0)">
+            <summary>
+            Adds the given entity to the context underlying the set in the 
+            Added state such that it will be inserted into the database when 
+            SaveChanges is called.
+            </summary>
+            <param name="entity">Entity to add to the context.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the given entities to the context underlying the set in the 
+            Added state such that it will be inserted into the database when 
+            SaveChanges is called.
+            </summary>
+            <param name="entities">IEnumerable of entities.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Commit">
+            <summary>
+            Saves all changes made in this context to the underlying database.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Delete(`0)">
+            <summary>
+            Marks the given entity as Deleted such that it will be deleted from 
+            the database when SaveChanges is called. The entity must exist in the
+            context in some other state before this method is called.
+            </summary>
+            <param name="entity">Entity to remove from the context.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Marks the given entities as Deleted such that it will be deleted from 
+            the database when SaveChanges is called. The entity must exist in the
+            context in some other state before this method is called.
+            </summary>
+            <param name="entities">IEnumerable of entities.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.Update(`0)">
+            <summary>
+            Updates the given entity in the collection.
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.AsyncAdd(`0)">
+            <summary>
+            Adds an entity to the entity set without waiting for the add to succeed or fail
+            </summary>
+            <param name="entity">Entity object to add.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.AsyncUpdate(`0)">
+            <summary>
+            Updates the given entity in the collection without waiting for the add to succeed or fail
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.EFClient.NonKeyedRepository`1.AsyncDelete(`0)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="entity">Entity to delete from the collection.</param>
+        </member>
+        <member name="P:Tucson.EFClient.NonKeyedRepository`1.EnablePropertyChangeMonitor">
+            <summary>
+            Gets or sets a value indicating whether to perform property change monitoring (True by default for all Entity Framework objects)
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.NonKeyedRepository`1.AsyncSupported">
+            <summary>
+            Gets a value indicating whether this repository supports Asynchronous updates
+            </summary>
+        </member>
+        <member name="P:Tucson.EFClient.NonKeyedRepository`1.AutoCommit">
+            <summary>
+            Gets or sets a value indicating whether to perform auto commit
+            </summary>
+        </member>
+        <member name="T:Tucson.EFClient.ContextFactory`1">
+            <summary>
+            Factory class for generating new Entity Framework DbContext objects.
+            </summary>
+            <typeparam name="T">Context type</typeparam>
+        </member>
+        <member name="T:Tucson.EFClient.IContextFactory">
+            <summary>
+            Generic interface for generating new Entity Framework DbContext objects.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.IContextFactory.GetContext">
+            <summary>
+            Creates a new IContext object.
+            </summary>
+            <returns>New Context object.</returns>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.#ctor(System.String,System.String)">
+            <summary>
+            Instantiates a new ContextFactory for the connection string.  The Type T must have a public constructor that takes a connection string
+            </summary>
+            <param name="connectionString">Connection string for the context.</param>
+            <param name="defaultContainerName">The default container name (usually the Entity Container Name in your EDMX file)</param>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.#ctor(System.String,System.String,System.Func{System.String,System.String,Tucson.EFClient.IContext})">
+            <summary>
+            Instantiates a new ContextFactory for the connection string using an activator method.
+            </summary>
+            <param name="connectionString">Connection string for the context.</param>
+            <param name="defaultContainerName">The default container name (usually the Entity Container Name in your EDMX file)</param>
+            <param name="activator">A creator method for the context</param>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.#ctor(System.Func{Tucson.EFClient.IContext})">
+            <summary>
+            Instantiates a new ContextFactory for the connection string using an activator method.
+            </summary>
+            <param name="activator">A creator method for the context</param>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.Dispose">
+            <summary>
+            Disposes of class instance.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.GetContext">
+            <summary>
+            Creates a new IContext object.
+            </summary>
+            <returns>New Context object.</returns>
+        </member>
+        <member name="M:Tucson.EFClient.ContextFactory`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes the context factory.
+            </summary>
+            <param name="disposing">Disposing status.</param>
+        </member>
+        <member name="T:Tucson.EFClient.Context">
+            <summary>
+            Represents a combination of the Unit Of Work and Repository patterns 
+            such that it can be used to query from a database and group together 
+            changes that will then be written back to the store as a unit.
+            </summary>
+        </member>
+        <member name="T:Tucson.EFClient.IContext">
+            <summary>
+            Provides functionality to query from a database and group together 
+            changes that will then be written back to the store
+            </summary>
+        </member>
+        <member name="T:Tucson.EFClient.ISetProvider">
+            <summary>
+            Provides functionality for access to entities of the given type in 
+            the context, the ObjectStateManager, and the underlying store.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.ISetProvider.GetEntitySet``1">
+            <summary>
+            Returns a ObjectSet instance for access to entities of the given type in 
+            the context, the ObjectStateManager, and the underlying store.
+            </summary>
+            <typeparam name="T">Type of the entity.</typeparam>
+            <returns>IObjectSet of type T.</returns>
+        </member>
+        <member name="M:Tucson.EFClient.IContext.Commit">
+            <summary>
+            Saves all changes made in this context to the underlying database.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.Context.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a new context
+            </summary>
+            <param name="connectionString">The connection string</param>
+            <param name="defaultContainerName">The default container name (usually the Entity Container Name in your EDMX file)</param>
+        </member>
+        <member name="M:Tucson.EFClient.Context.Commit">
+            <summary>
+            Saves all changes made in this context to the underlying database.
+            </summary>
+        </member>
+        <member name="M:Tucson.EFClient.Context.GetEntitySet``1">
+            <summary>
+            Returns a ObjectSet instance for access to entities of the given type in 
+            the context, the ObjectStateManager, and the underlying store.
+            </summary>
+            <typeparam name="TEntity">Type of the entity.</typeparam>
+            <returns>IObjectSet of type TEntity.</returns>
+        </member>
+        <member name="T:Tucson.EFClient.KeyedReadOnlyRepository`2">
+            <summary>
+            Base class for implementing the keyed read only repository pattern over an Entity Framework based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TKey">The type of the key for the entity.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="T:Tucson.IKeyedReadOnlyRepository`2">
+            <summary>
+            Generic interface for implementing the Repository pattern over
+            business entities.
+            </summary>
+            <typeparam name="TKey">Key type on the entity.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="M:Tucson.IKeyedReadOnlyRepository`2.FindBy(`0)">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="entityId">Entity key.</param>
+            <returns><typeparamref name="TEntity"/></returns>
+        </member>
+        <member name="M:Tucson.EFClient.KeyedReadOnlyRepository`2.#ctor(Tucson.EFClient.IContextFactory)">
+            <summary>
+            Instantiates a new Keyed ReadOnly Repository and database context for the entity.
+            </summary>
+            <param name="contextFactory">IContextFactory for the database.</param>
+        </member>
+        <member name="M:Tucson.EFClient.KeyedReadOnlyRepository`2.FindBy(`0)">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="entityId">Entity key.</param>
+            <returns>The entity or NULL</returns>
+        </member>
+        <member name="P:Tucson.EFClient.KeyedReadOnlyRepository`2.EnablePropertyChangeMonitor">
+            <summary>
+            Gets or sets a value indicating whether to perform property change monitoring (True by default for all Entity Framework objects)
+            </summary>
+        </member>
+        <member name="T:Tucson.IReadOnlyRepositoryExtensions">
+            <summary>
+            Some extensions for the IReadOnlyRepository
+            </summary>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformCommittedReadAction(Tucson.IReadOnlyRepository,System.Action)">
+            <summary>
+            Performs an action within the context of a committed read by setting the ReadPreference flag to AllowReadPreference.MustBeCommitted.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="repository">A repository to set the AllowDirtyRead flag</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformCommittedReadAction``1(Tucson.IReadOnlyRepository,System.Func{``0})">
+            <summary>
+            Performs an action within the context of a committed read by setting the ReadPreference flag to AllowReadPreference.MustBeCommitted.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="repository">A repository to set the AllowDirtyRead flag</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformDirtyReadAction(Tucson.IReadOnlyRepository,System.Action)">
+            <summary>
+            Performs an action within the context of dirty reads.  Helps make sure repo's ReadPreference flag is set to AllowReadPreference.DirtyOk.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformDirtyReadAction``1(Tucson.IReadOnlyRepository,System.Func{``0})">
+            <summary>
+            Performs an action within the context of dirty reads.  Helps make sure repo's ReadPreference flag is set to AllowReadPreference.DirtyOk.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformReadPreferenceAction(Tucson.IReadOnlyRepository,Tucson.AllowReadPreference,System.Action)">
+            <summary>
+            Performs an action within the context of dirty or non-dirty reads.  Helps make sure repo's ReadPreference flag is set correctly.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+            <param name="readPreference">The value of ReadPreference</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+        </member>
+        <member name="M:Tucson.IReadOnlyRepositoryExtensions.PerformReadPreferenceAction``1(Tucson.IReadOnlyRepository,Tucson.AllowReadPreference,System.Func{``0})">
+            <summary>
+            Performs an action within the context of dirty or non-dirty reads.  Helps make sure repo's ReadPreference flag is set correctly.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="readPreference">The value of ReadPreference</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="T:Tucson.IKeyedEntity`1">
+            <summary>
+            Represents an entity with a key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:Tucson.IKeyedEntity`1.EntityId">
+            <summary>
+            Unique key for the entity.
+            </summary>
+        </member>
+        <member name="T:Tucson.EFClient.Repository`2">
+            <summary>
+            Base class for implementing the Repository pattern over an Entity Framework based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TKey">The type of the key for the entity.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="T:Tucson.IKeyedRepository`2">
+            <summary>
+            Generic interface for implementing the Repository pattern over
+            business entities.
+            </summary>
+            <typeparam name="TKey">Key type on the entity.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="M:Tucson.IKeyedRepository`2.Delete(`0)">
+            <summary>
+            Removes an entity from the collection.
+            </summary>
+            <param name="key">Key for the entity object to remove.</param>
+        </member>
+        <member name="M:Tucson.IKeyedRepository`2.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes a collection of entities from the entity set.
+            </summary>
+            <param name="keys">A collection of keys of type <typeparamref name="TKey"/>.</param>
+        </member>
+        <member name="M:Tucson.IKeyedRepository`2.AsyncDelete(`0)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="key">Key for the entity to delete from the collection.</param>
+        </member>
+        <member name="M:Tucson.EFClient.Repository`2.#ctor(Tucson.EFClient.IContextFactory)">
+            <summary>
+            Instantiates a new Repository and database context for the entity.
+            </summary>
+            <param name="contextFactory">IContextFactory for the database.</param>
+        </member>
+        <member name="M:Tucson.EFClient.Repository`2.FindBy(`0)">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="entityId">Entity key.</param>
+            <returns>The entity or NULL</returns>
+        </member>
+        <member name="M:Tucson.EFClient.Repository`2.Delete(`0)">
+            <summary>
+            Removes an entity from the collection.
+            </summary>
+            <param name="key">Key for the entity object to remove.</param>
+        </member>
+        <member name="M:Tucson.EFClient.Repository`2.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes a collection of entities from the entity set.
+            </summary>
+            <param name="keys">A collection of keys of type <typeparamref name="TKey"/>.</param>
+        </member>
+        <member name="M:Tucson.EFClient.Repository`2.AsyncDelete(`0)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="key">Key for the entity to delete from the collection.</param>
+        </member>
+        <member name="T:Tucson.ITucsonSettings">
+            <summary>
+            Marker interface for Tucson settings (used by providers and repositories)
+            </summary>
+        </member>
+        <member name="T:Tucson.LazyPropertySetter">
+            <summary>
+            The LazyPropertySetter class can improve entity usage in EntityFramework.
+            When you set a property value in entity framework, an UPDATE statement is executed even if the property value didn't change.
+            Eg this code causes an UPDATE even though the Property didn't change:
+              var oldvalue = entity.Property;
+              entity.Property = oldvalue;
+              repository.Update(entity);
+            Instead, use SetProp to avoid the unnecessary update when you think the value may not have actually changed:
+              entity.SetProp(e => e.Property, oldvalue);
+            </summary>
+        </member>
+        <member name="M:Tucson.LazyPropertySetter.SetProp``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+            <summary>
+            Lazily sets a property value to an instance only if the value has changed (same as: if (o.p != v) o.p = v)
+            This can improve SQL performance against EF objects
+            </summary>
+            <typeparam name="T">The type of the instance to set</typeparam>
+            <typeparam name="TR">An expression that returns a property from the instance</typeparam>
+            <param name="instance">the object to change</param>
+            <param name="getProperty">returns the property to modify</param>
+            <param name="newvalue">the new value for the property</param>
+        </member>
+        <member name="M:Tucson.LazyPropertySetter.GetProp``1(``0,System.String)">
+            <summary>
+            Gets a instance property value by name
+            </summary>
+            <typeparam name="T">The type of the instance</typeparam>
+            <param name="instance">The instance</param>
+            <param name="propName">The property name (must exist!)</param>
+            <returns>The value of the property</returns>
+        </member>
+        <member name="T:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor">
+            <summary>
+            Interface for tracking changes for mongo entities
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor.ClearChanges">
+            <summary>
+            Clears the list of changes
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor.SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)">
+            <summary>
+            Sets the UpdateBuilder with changes made
+            </summary>
+            <param name="parentName">Name of the parent element (when there's no parent, use NULL)</param>
+            <param name="updateBuilder">The mongo update builder</param>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor.HasChanges">
+            <summary>
+            Returns a value indicating whether there are any dirty values
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor.ChildChangeMonitors">
+            <summary>
+            Returns a list of Child change monitors
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor.ProxyInstance">
+            <summary>
+            Gets the object that is proxied
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.ChangeInterceptor.SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)">
+            <summary>
+            Sets the UpdateBuilder with changes made
+            </summary>
+            <param name="parentName">name of the parent element</param>
+            <param name="updateBuilder">the mongo update builder</param>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.ChangeInterceptor.IsWrappableObject(System.Type,System.Object)">
+            <summary>
+            returns true if the type is wrappable and the value is wrappable (stupid, I know)
+            </summary>
+            <param name="t"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.ChangeInterceptor.SetNestedListProperties(System.Collections.IList,System.Collections.IList)">
+            <summary>
+            
+            </summary>
+            <param name="oldlist"></param>
+            <param name="newlist"></param>
+            <returns>True if the property should be set</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.ChangeInterceptor.SetNestedClassProperties(System.Object,System.Object)">
+            <summary>
+            Sets the properties of newinstance to the the properties of the oldinstance, if they are different
+            </summary>
+            <param name="oldinstance"></param>
+            <param name="newinstance"></param>
+        </member>
+        <member name="T:Tucson.MongoClient.DatabaseFactory`1">
+            <summary>
+            Factory class for generating new MongoDB Database objects.
+            </summary>
+            <typeparam name="T">Database type</typeparam>
+        </member>
+        <member name="T:Tucson.MongoClient.IDatabaseFactory">
+            <summary>
+            Generic interface for generating new MongoDB Database objects.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.IDatabaseFactory.GetDatabase">
+            <summary>
+            Creates a new ICollectionProvider object.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.DatabaseFactory`1.#ctor(System.String)">
+            <summary>
+            Instantiates a new DatabaseFactory for the connection string.
+            </summary>
+            <param name="connectionString">Connection string for the database.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.DatabaseFactory`1.#ctor(System.Func{Tucson.MongoClient.ICollectionProvider})">
+            <summary>
+            Instantiates a new DatabaseFactory using a creator method
+            </summary>
+            <param name="creator">Delegate to create an instance of the database.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.DatabaseFactory`1.GetDatabase">
+            <summary>
+            Creates a new ICollectionProvider object.
+            </summary>
+            <returns>New Database object.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.DatabaseFactory`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes of any objects created solely for use by the DatabaseFactory (GetDatabase() results are NOT disposed)
+            </summary>
+            <param name="disposing">True when user is calling Dispose(), false if coming from GC</param>
+        </member>
+        <member name="T:Tucson.MongoClient.Database">
+            <summary>
+            Represents a MongoDB database and the settings used to access it. 
+            This class is thread-safe.
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.ICollectionProvider">
+            <summary>
+            Provides functionality for access to documents of the given type in 
+            the underlying store.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ICollectionProvider.GetCollection``1(System.String)">
+            <summary>
+            Returns a MongoCollection instance for access to documents of the 
+            given type.
+            </summary>
+            <typeparam name="TEntity">Type of the entity.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <returns>MongoCollection of type <typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ICollectionProvider.GetCollection``1(System.String,MongoDB.Driver.IMongoCollectionOptions)">
+            <summary>
+            Returns a MongoCollection instance for access to documents of the 
+            given type.
+            </summary>
+            <typeparam name="TEntity">Type of the entity.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <param name="options">Options for creating this collection.</param>
+            <returns>MongoCollection of type <typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ICollectionProvider.GetCollection``1(System.String,MongoDB.Driver.IMongoCollectionOptions,System.Nullable{MongoDB.Driver.ReadPreferenceMode})">
+            <summary>
+            Returns a MongoCollection instance for access to documents of the 
+            given type.
+            </summary>
+            <typeparam name="TEntity">Type of the entity.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <param name="options">Options for creating this collection.</param>
+            <param name="readMode">The read mode preference</param>
+            <returns>MongoCollection of type <typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="P:Tucson.MongoClient.ICollectionProvider.Timeout">
+            <summary>
+            Gets or sets the timeout for the collection
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ICollectionProvider.ServerInstances">
+            <summary>
+            Gets a value indicating the number of server instances for the connection
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.#ctor(System.String)">
+            <summary>
+            Instantiates a new Repository and database context for the entity.
+            </summary>
+            <param name="connectionString">MongoDB connection string.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.GetCollection``1(System.String)">
+            <summary>
+            Gets a MongoCollection instance representing a collection on this 
+            database with a default document type of T.
+            </summary>
+            <typeparam name="T">The default document type for this collection.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <returns>An instance of MongoCollection.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.GetCollection``1(System.String,MongoDB.Driver.IMongoCollectionOptions)">
+            <summary>
+            Gets a MongoCollection instance representing a collection on this 
+            database with a default document type of T.
+            </summary>
+            <typeparam name="T">The default document type for this collection.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <param name="options">Options for creating this collection.</param>
+            <returns>An instance of MongoCollection.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.GetCollection``1(System.String,MongoDB.Driver.IMongoCollectionOptions,System.Nullable{MongoDB.Driver.ReadPreferenceMode})">
+            <summary>
+            Returns a MongoCollection instance for access to documents of the 
+            given type.
+            </summary>
+            <typeparam name="T">Type of the entity.</typeparam>
+            <param name="collectionName">The name of the collection.</param>
+            <param name="options">Options for creating this collection.</param>
+            <param name="readMode">The read mode preference</param>
+            <returns>MongoCollection of type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.RemovePassword(MongoDB.Driver.MongoUrl)">
+            <summary>
+            Creates new MongoUrl instance with no credentials
+            </summary>
+            <param name="url"></param>
+            <returns>MongoUrl with no credentials</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.RemoveReadPreference(System.String)">
+            <summary>
+            If a ReadPreferenceMode is specified when connecting to Mongo, the "slaveOk" or "readPreference" option 
+            needs to be removed from the connection string we are using. This is because the Mongo driver will complain
+            if the readPreference is set manually after it's already been specified in the connection string. 
+            </summary>
+            <param name="rawConnectionString">The unmodified connection string</param>
+            <returns>The connection string with the "slaveOk" or "readPreference" option removed</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.GetCollection``1(MongoDB.Driver.MongoDatabase,System.String,MongoDB.Driver.IMongoCollectionOptions)">
+            <summary>
+            Gets a MongoCollection using the MongoDB driver.
+            </summary>
+            <param name="database">The database for MongoDB.</param>
+            <param name="collectionName">Name of the collection to retrieve.</param>
+            <param name="options">Settings for the collection.</param>
+            <returns>MongoCollection</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.Database.Dispose(System.Boolean)">
+            <summary>
+            Disposes of any objects created by the database
+            </summary>
+            <param name="disposing">True when user is calling Dispose(), false if coming from GC</param>
+        </member>
+        <member name="P:Tucson.MongoClient.Database.Timeout">
+            <summary>
+            Gets or sets the timeout for the collection
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Database.ServerInstances">
+            <summary>
+            Gets a value indicating the number of server instances for the connection
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Database.ConnectionState.FirstConnect">
+            <summary>
+            Initial state
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Database.ConnectionState.FailBackToNoAuth">
+            <summary>
+            Connection failed, try no authentication
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Database.ConnectionState.FailBackToAuth">
+            <summary>
+            Connection failed, try authentication
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.IMongoMap">
+            <summary>
+            Default interface implying that the class implements a Mongo Map
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.IMongoMap.RegisterClassMaps">
+            <summary>
+            A method that registers all of the class maps for Mongo
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.IMongoMap.IsMappedType">
+            <summary>
+            A function that returns True if the Type is a MappedType
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.ChangeMonitor.IMongoModelPropertyChangeMonitor">
+            <summary>
+            Interface for tracking property changes for mongo entities
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelPropertyChangeMonitor.DirtyProperties">
+            <summary>
+            Returns the list of dirty properties for the object
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.ChangeMonitor.IMongoModelChilldPropertyChangeMonitor">
+            <summary>
+            Interface for a mongo model embedded property
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelChilldPropertyChangeMonitor.PropInfo">
+            <summary>
+            Gets the property that is monitored
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.IMongoModelChilldPropertyChangeMonitor.Monitor">
+            <summary>
+            Gets the monitor imnplementation for the property
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.IndexDefinition">
+            <summary>
+            Thin wrapper for the objects needed to define an index.
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.IUpdateableEntity.CreateDate">
+            <summary>
+            Gets
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.KeyedReadOnlyRepository`2">
+            <summary>
+            Base class for implementing the Repository pattern over a MongoDB based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TKey">Entity's key type to expose via the repository.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.</typeparam>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.#ctor(Tucson.MongoClient.IDatabaseFactory,System.String)">
+            <summary>
+            Instantiates a new Repository and collection for the entity.
+            </summary>
+            <param name="databaseFactory">IDatabaseFactory for the database.</param>
+            <param name="collectionName">Name of the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.SendToSplunk(System.String,System.String,System.Diagnostics.Stopwatch)">
+            <summary>
+            Sends a message to splunk, including the time.
+            </summary>
+            <param name="source">The source</param>
+            <param name="method"></param>
+            <param name="timer"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.All">
+            <summary>
+            Returns the underlying collection.  Be sure to use AttachChangeMonitor if you are going to be updating any of the objects from the result.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.FilterBy(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            Filters a sequence of entities based on a predicate.  Be sure to use AttachChangeMonitor if you are going to be updating any of the objects from the result.
+            </summary>
+            <param name="expression">Expression for filtering entity set.</param>
+            <returns>IQueryable.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.FindBy(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            Finds an entity based on an expression.
+            </summary>
+            <param name="expression">Expression for filtering entity set.</param>
+            <returns><typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.FindBy(`0)">
+            <summary>
+            Filters a sequence of entities based on the unique identifier.
+            </summary>
+            <param name="entityId">Id of the entity.</param>
+            <returns>T.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.AttachChangeMonitor(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Attaches an enumeration of entities to the change monitor system for better mongo updates
+            </summary>
+            <param name="list">The list of items to attach</param>
+            <returns>The list of items attached</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.AttachChangeMonitor(`1)">
+            <summary>
+            Attaches an entities to the change monitor system for better mongo updates
+            </summary>
+            <param name="entity">The entity to attach</param>
+            <returns>The list of items attached</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.GetPropertyChangeMonitor``1(``0)">
+            <summary>
+            Returns the IPropertyChangeMonitor for an instance of a type
+            </summary>
+            <param name="proxy">The entity object</param>
+            <returns>The property change monitor, or NULL if one is not found</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.Dispose(System.Boolean)">
+            <summary>
+            Disposes of the Database and DatabaseFactory when disposing == true
+            </summary>
+            <param name="disposing">True when user is calling Dispose(), false if coming from GC</param>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQuery``1(System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQuery``1(System.Func{Tucson.MongoClient.KeyedReadOnlyRepository{`0,`1},System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQuery``1(System.String,System.Func{System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQuery``1(System.String,System.Func{Tucson.MongoClient.KeyedReadOnlyRepository{`0,`1},System.Linq.IQueryable{``0}})">
+            <summary>
+            Wraps evaluation of IQueryable in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQueryForItem``1(System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQueryForItem``1(System.Func{Tucson.MongoClient.KeyedReadOnlyRepository{`0,`1},``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQueryForItem``1(System.String,System.Func{``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.PerformQueryForItem``1(System.String,System.Func{Tucson.MongoClient.KeyedReadOnlyRepository{`0,`1},``0})">
+            <summary>
+            Wraps evaluation of IQueryable that returns an instance (not a list) in retry logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryName">Name of the query for logging purposes</param>
+            <param name="query">The query to perform</param>
+            <returns>The result of the query</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.ActOnRepository(System.Action)">
+            <summary>
+            Retry logic for write operations
+            </summary>
+            <param name="act"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.ActOnRepository``1(System.Func{``0},System.Boolean)">
+            <summary>
+            Retry Logic
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="act"></param>
+            <param name="isReadOnlyOperation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsDuplicateKeyException(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown due to a successful add being retried, causing a 
+            duplicate key error. 
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsConnectionPoolRecyclingDueToElection(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown when the primary node in a replica set is offline or has stepped down 
+            and the connection pool is being recycled to accomodate this fact.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsElectionHappening(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown while there is no primary node in a replica set. If this is
+            the case, then an election must be occurring. The conditions evaluated by this method will be true only after the 
+            connection pool has been recycled. 
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsQueryFailure(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown because a query failed.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsSlaveOkFalseElection(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown because a query failed.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsServerNotConnected(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was thrown because a server is no longer connected.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsOtherExpectedError(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it matches any "miscellaneous" condition that can occur while there is no
+            primary node in a replica set. 
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.IsOtherMongoException(System.Exception)">
+            <summary>
+            Checks an exception to determine whether it was a non-specific Mongo issue. 
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.KeyedReadOnlyRepository`2.CheckExceptionConditions(System.Exception,System.Func{System.Exception,System.Boolean}[])">
+            <summary>
+            Evaluates a collection of exception conditions to determine whether any of them have been met. 
+            If the type of <paramref name="ex"/> is TargetInvocationException, the InnerException property of 
+            <paramref name="ex"/> will be checked, instead of <paramref name="ex"/> itself.
+            </summary>
+            <param name="ex"></param>
+            <param name="conditions"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.Timeout">
+            <summary>
+            Gets or sets a timeout for the repository
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.ReadPreference">
+            <summary>
+            Gets or sets a flag to default to reading all data using uncommitted reads
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.Database">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying Database object.
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.DatabaseFactory">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying DatabaseFactory object.
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.Query">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying MongoCollection.
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.WriteQuery">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying MongoCollection used for committed reading or writing.
+            eg: ReadPreferenceMode.PrimaryPreferred
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.SecondaryReadQuery">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying MongoCollection used for uncommitted reading.
+            eg: ReadPreferenceMode.SecondaryPreferred
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.DefaultQuery">
+            <summary>
+            This property can be used by derived classes to access the
+            underlying MongoCollection used for reading/writing based on the connection string being used by the app.
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.AsyncSupported">
+            <summary>
+            Gets a value indicating whether this repository supports Asynchronous updates
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.KeyedReadOnlyRepository`2.EnablePropertyChangeMonitor">
+            <summary>
+            Gets or sets a value indicating whether to perform property change monitoring
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.ChangeInterceptorForIList.SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)">
+            <summary>
+            Sets the UpdateBuilder with changes made
+            </summary>
+            <param name="parentName"></param>
+            <param name="ub"></param>
+        </member>
+        <member name="P:Tucson.MongoClient.ChangeMonitor.ChangeInterceptorForIList.HasChanges">
+            <summary>
+            Gets a value indicating if there are changes for this list
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.MongoChangeProxyFactory.MongoChangeProxyCreator.GetPropertyChangeMonitor``1(``0)">
+            <summary>
+            Returns the IPropertyChangeMonitor for an instance of a type
+            </summary>
+            <param name="proxy">The entity object</param>
+            <returns>The property change monitor, or NULL if one is not found</returns>
+        </member>
+        <member name="T:Tucson.MongoClient.MongoMapFactory">
+            <summary>
+            A factory to store Mongo Maps.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoMapFactory.AddMap(Tucson.MongoClient.IMongoMap)">
+            <summary>
+            Adds a MongoMap into the MapFactory.  The instance is added only once by the Type.
+            </summary>
+            <param name="instance">An instance of a MongoMap</param>
+            <returns>True if the Mongo Map was added, False if it was already added</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoMapFactory.GetMongoElementName``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Returns the mongodb (BSON) element name for a given property from a type
+            </summary>
+            <typeparam name="T">The type of the mongo class</typeparam>
+            <typeparam name="TR">The type of the property</typeparam>
+            <param name="me">An instance of type T</param>
+            <param name="getProperty">An expression that returns a property from the type</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoMapFactory.GetMongoElementName``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Returns the mongodb (BSON) element name for a given property from a type
+            </summary>
+            <typeparam name="T">The type of the mongo class</typeparam>
+            <param name="getProperty">An expression that returns a property from the type</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoMapFactory.GetMongoElementName(System.Type,System.String)">
+            <summary>
+            Returns the mongodb (BSON) element name for a given field from a type
+            </summary>
+            <param name="t">The type of the mongo class</param>
+            <param name="field">An expression that returns a property from the type</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoUrlFactory.GetUrl(System.String,System.Nullable{MongoDB.Driver.ReadPreferenceMode},System.Nullable{System.TimeSpan})">
+            <summary>
+            Gets a MongoUrl for the connection string.
+            </summary>
+            <param name="connectionString">Connection string or named connection string.</param>
+            <param name="readMode">The read preference</param>
+            <param name="socketTimeout">The timeout for socket calls</param>
+            <returns>MongoUrl derived from System.Uri.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoUrlFactory.UpdateUrl(System.String,System.Nullable{MongoDB.Driver.ReadPreferenceMode},MongoDB.Driver.MongoUrl)">
+            <summary>
+            Updates the cached url for a given connection string
+            </summary>
+            <param name="connectionString">The connection string value</param>
+            <param name="readMode">The read preference</param>
+            <param name="url">The new Url</param>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoUrlFactory.Clear(System.String,System.Nullable{MongoDB.Driver.ReadPreferenceMode})">
+            <summary>
+            Removes connection string from cache
+            </summary>
+            <param name="connectionString">Connection string to remove</param>
+            <param name="readMode">The read preference</param>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoUrlFactory.GetConnectionString(System.String)">
+            <summary>
+            Gets a connection string using either a named string or a properly formatted string.
+            </summary>
+            <param name="connectionString">A named string in App.config or a connection string</param>
+            <returns>A properly formatted connection string.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.MongoUrlFactory.DecryptPassword(MongoDB.Driver.MongoUrl)">
+            <summary>
+            Creates new MongoUrl instance based on username and decrypted password
+            </summary>
+            <param name="url"></param>
+            <returns>MongoUrl with username and decrypted password</returns>
+        </member>
+        <member name="T:Tucson.MongoClient.ObjectId">
+            <summary>
+            Represents a Mongo document's ObjectId
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.SetValue(System.Byte[])">
+            <summary>Sets the value.</summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tucson.MongoClient.ObjectId"/> class.
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tucson.MongoClient.ObjectId"/> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tucson.MongoClient.ObjectId"/> class.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal
+            to this instance.
+            </summary>
+            <param name="obj">
+            The <see cref="T:System.Object"/> to compare with this instance.
+            </param>
+            <returns>
+            <c>true</c> if the specified <see cref="T:System.Object"/> is equal to 
+            this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.Equals(Tucson.MongoClient.ObjectId)">
+            <summary>Equalses the specified other.</summary>
+            <param name="other">The other.</param>
+            <returns>The equals.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.GetHashCode">
+            <summary>Returns a hash code for this instance.</summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing 
+            algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.GetValue">
+            <summary>Gets the value.</summary>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.NewObjectId">
+            <summary>
+            Generates a new unique oid for use with MongoDB Objects.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.TryParse(System.String,Tucson.MongoClient.ObjectId@)">
+            <summary>Tries to parse an ObjectId from a string.</summary>
+            <param name="value">The string to parse.</param>
+            <param name="id">The ObjectId.</param>
+            <returns>The try parse result.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.op_Equality(Tucson.MongoClient.ObjectId,Tucson.MongoClient.ObjectId)">
+            <summary>Implements the operator ==.</summary>
+            <param name="objectA">The first ObjectId.</param>
+            <param name="objectB">The second ObjectId.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.op_Inequality(Tucson.MongoClient.ObjectId,Tucson.MongoClient.ObjectId)">
+            <summary>Implements the operator !=.</summary>
+            <param name="objectA">The first ObjectId.</param>
+            <param name="objectB">The second ObjectId.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.op_Implicit(Tucson.MongoClient.ObjectId)~System.String">
+            <summary>
+            Implements the implicit conversion from ObjectId to string.
+            </summary>
+            <param name="objectId">ObjectId to implicitly convert.</param>
+            <returns>Converted string.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.op_Implicit(System.String)~Tucson.MongoClient.ObjectId">
+            <summary>
+            Implements the implicit conversion from string to ObjectId.
+            </summary>
+            <param name="value">String to implicitly convert.</param>
+            <returns>Converted ObjectId.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectId.DecodeHex(System.String)">
+            <summary>Decodes a HexString to bytes.</summary>
+            <param name="value">
+            The hex encoding string that should be converted to bytes.
+            </param>
+            <returns>A byte array of the string.
+            </returns>
+        </member>
+        <member name="P:Tucson.MongoClient.ObjectId.Empty">
+            <summary>
+            Provides an empty ObjectId (all zeros).
+            </summary>
+        </member>
+        <member name="T:Tucson.MongoClient.ObjectIdGenerator">
+            <summary>Represents an ObjectId Generator.</summary>
+        </member>
+        <member name="F:Tucson.MongoClient.ObjectIdGenerator.Epoch">
+            <summary>The epoch.</summary>
+        </member>
+        <member name="F:Tucson.MongoClient.ObjectIdGenerator.Inclock">
+            <summary>The inclock.</summary>
+        </member>
+        <member name="F:Tucson.MongoClient.ObjectIdGenerator._inc">
+            <summary>The inc.</summary>
+        </member>
+        <member name="F:Tucson.MongoClient.ObjectIdGenerator.MachineHash">
+            <summary>The machine hash.</summary>
+        </member>
+        <member name="F:Tucson.MongoClient.ObjectIdGenerator.ProcId">
+            <summary>The proc id.</summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdGenerator.GenerateTime">
+            <summary>Generates time.</summary>
+            <returns>The time.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdGenerator.GenerateInc">
+            <summary>Generate an increment.</summary>
+            <returns>The increment.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdGenerator.GenerateHostHash">
+            <summary>Generates a host hash.</summary>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdGenerator.GenerateProcId">
+            <summary>Generates a proc id.</summary>
+            <returns>Proc id.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdGenerator.Generate">
+            <summary>Generates a byte array ObjectId.</summary>
+        </member>
+        <member name="T:Tucson.MongoClient.ObjectIdTypeConverter">
+            <summary>
+            Type Converter for <see cref="T:Tucson.MongoClient.ObjectId"/>.
+            </summary>
+            <remarks>
+            Currently supports conversion of a String to ObjectId
+            </remarks>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether this converter can convert an object of the given 
+            type to the type of this converter, using the specified context.
+            </summary>
+            <param name="context">An 
+            <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that 
+            provides a format context.
+            </param>
+            <param name="sourceType">A <see cref="T:System.Type"/> that 
+            represents the type you want to convert from.
+            </param>
+            <returns>
+            true if this converter can perform the conversion; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ObjectIdTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts the given object to the type of this converter, using the
+            specified context and culture information.
+            </summary>
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/>
+            that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/>
+            to use as the current culture.
+            </param>
+            <param name="value">The <see cref="T:System.Object"/> to convert.</param>
+            <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.PropertyChangeInterceptor.SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)">
+            <summary>
+            Sets the UpdateBuilder with changes made
+            </summary>
+            <param name="parentName"></param>
+            <param name="ub"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.PropertyChangeInterceptor.ListUpdate(System.Collections.ICollection,MongoDB.Bson.BsonArray)">
+            <summary>
+            handles update statements for lists
+            </summary>
+            <param name="list"></param>
+            <param name="bsonArray"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.ChangeMonitor.PropertyChangeInterceptor.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            called when any virtual member of the model is used
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="T:Tucson.MongoClient.Repository`2">
+            <summary>
+            Base class for implementing the Repository pattern over a MongoDB based entity.
+            </summary>
+            <remarks>Derive from this class to create an entity-specific repository.</remarks>
+            <typeparam name="TKey">Entity's key type to expose via the repository.</typeparam>
+            <typeparam name="TEntity">Entity to expose via the repository.  The Entity should implement IUpdateableEntity.</typeparam>
+        </member>
+        <member name="F:Tucson.MongoClient.Repository`2.MajoritySafeModeStatic">
+            <summary>
+            majority update - enforces majority update across the replica set before the update/add statement returns
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Repository`2.SingleSafeModeStatic">
+            <summary>
+            single update - enforces update in at least one of the replica set before the update/add statement returns
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Repository`2.AsyncSafeModeStatic">
+            <summary>
+            No safe mode for Mongo - fire and forget updates 
+            </summary>
+        </member>
+        <member name="F:Tucson.MongoClient.Repository`2._syncSafeMode">
+            <summary>
+            single update - enforces update in at least one of the replica set before the update/add statement returns
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.#ctor(Tucson.MongoClient.IDatabaseFactory,System.String)">
+            <summary>
+            Instantiates a new Repository and collection for the entity.
+            </summary>
+            <param name="databaseFactory">IDatabaseFactory for the database.</param>
+            <param name="collectionName">Name of the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Add(`1)">
+            <summary>
+            Adds the given entity to the collection.
+            </summary>
+            <param name="entity">Entity to add to the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Add(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Adds the given entities into the database. 
+            </summary>
+            <param name="entities">IEnumerable of entities.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Commit">
+            <summary>
+            Saves all changes made in this context to the underlying database
+            </summary>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Upsert(`1)">
+            <summary>
+            Either adds or updates an existing document in mongo by the entity id
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Delete(`1)">
+            <summary>
+            Removes the given entity from the collection.
+            </summary>
+            <param name="entity">Entity to remove from the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Delete(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Removes the given entity set from the collection.
+            </summary>
+            <param name="entities">IEnumerable of entities.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Delete(`0)">
+            <summary>
+            Removes an entity from the collection.
+            </summary>
+            <param name="key">Key for the entity object to remove.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Removes a collection of entities by key from the collection in batches of DefaultBatchSize
+            </summary>
+            <param name="keys">A collection of keys of type <typeparamref name="TKey"/>.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Delete(System.Collections.Generic.IEnumerable{`0},System.Int32)">
+            <summary>
+            Removes a collection of entities from the entity set.
+            </summary>
+            <param name="keys">A collection of keys of type <typeparamref name="TKey"/>.</param>
+            <param name="batchSize">size of each delete batch</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.AsyncDelete(`0)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="key">Key for the entity to delete from the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Update(`1)">
+            <summary>
+            Updates the given entity in the collection.
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.AsyncAdd(`1)">
+            <summary>
+            Adds an entity to the entity set without waiting for the add to succeed or fail
+            </summary>
+            <param name="entity">Entity object to add.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.AsyncUpdate(`1)">
+            <summary>
+            Updates the given entity in the collection with out caring that the updates succeed or not.
+            </summary>
+            <param name="entity">Entity to update in the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.AsyncDelete(`1)">
+            <summary>
+            Deletes the given entity in the collection without waiting for the delete to succeed or fail
+            </summary>
+            <param name="entity">Entity to delete from the collection.</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.UpdateFieldInPlace(System.String,System.String,System.Object)">
+            <summary>
+            Update a field using a set so the complete document doesn't need to be replaced.
+            Finds the record to be updated using the entity id
+            Set value to NULL to unset (remove) the field
+            </summary>
+            <param name="entityId">Id to update</param>
+            <param name="fieldName">mongo name of the field to be update</param>
+            <param name="value">new value for the field</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.UpdateFieldInPlace(System.String,MongoDB.Driver.IMongoQuery,System.String,System.Object)">
+            <summary>
+            Update a field using a set so the complete document doesn't need to be replaced
+            Finds the record to be updated using the entityId and also the andAlso query
+            Set value to NULL to unset (remove) a the field
+            </summary>
+            <param name="entityId">Id to update</param>
+            <param name="fieldName">mongo name of the field to be update</param>
+            <param name="value">new value for the field</param>
+            <param name="andAlso">Use for find criteria</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.Dispose(System.Boolean)">
+            <summary>
+            Disposes of any pending actions
+            </summary>
+            <param name="disposing">True when user is calling Dispose(), false if coming from GC</param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.SwallowSafeModeResult(MongoDB.Driver.SafeModeResult)">
+            <summary>
+            Swallows a SafeModeResult
+            </summary>
+            <param name="smr"></param>
+        </member>
+        <member name="M:Tucson.MongoClient.Repository`2.SetUpdateDate(`1)">
+            <summary>
+            Sets the update and create dates for an entity that implements IUpdateableEntity.  Called automatically by Update/Upsert/Add.  Call this only if you are manually updating your entity.
+            </summary>
+            <param name="entity">The entity to update</param>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.AutoCommit">
+            <summary>
+            Gets or sets a value indicating whether to perform auto commit
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.DefaultBatchSize">
+            <summary>
+            The default number of entities to process for batchable processes, like Delete(IEnumerable).  Default: 100
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.SyncSafeMode">
+            <summary>
+            Gets the synchronous safe mode for this repository
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.AsyncSafeMode">
+            <summary>
+            Gets the asynchronous safe mode for this repository
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.PendingActions">
+            <summary>
+            Gets a list of pending actions to perform
+            </summary>
+        </member>
+        <member name="P:Tucson.MongoClient.Repository`2.LastSafeModeResult">
+            <summary>
+            Gets or sets the last swallowed SafeModeResult
+            </summary>
+        </member>
+        <member name="T:Tucson.Provider.ITucsonProvider">
+            <summary>
+            Marker interface for Tucson providers (all Tucson providers must be Disposed!!)
+            </summary>
+        </member>
+        <member name="T:Tucson.Provider.TucsonProviderFactory">
+            <summary>
+            Provider factory for ITucsonProvider interfaces
+            </summary>
+        </member>
+        <member name="M:Tucson.Provider.TucsonProviderFactory.SetProviderCreator``2(System.Func{``1,``0})">
+            <summary>
+            Sets the provider creator method for the type
+            </summary>
+            <typeparam name="T">The type of the provider</typeparam>
+            <typeparam name="TSettings">The type of the settings</typeparam>
+            <param name="creator">The method to create the provider</param>
+        </member>
+        <member name="M:Tucson.Provider.TucsonProviderFactory.CreateProvider``2(``1)">
+            <summary>
+            Creates a new provider.  Be sure to Dispose() the result of this method in a using() statement
+            </summary>
+            <typeparam name="T">The type of the provider</typeparam>
+            <typeparam name="TSettings">The type of the settings</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Tucson.ReadPreferenceState">
+            <summary>
+            A class that controls the ReadPrefernce of an IReadOnlyRepository.  Place it in a using statement to automatically restore the read prefrence back to what it was.
+            </summary>
+        </member>
+        <member name="M:Tucson.ReadPreferenceState.#ctor(Tucson.IReadOnlyRepository,Tucson.AllowReadPreference)">
+            <summary>
+            Creates a new ReadPreferenceState, setting the repository's ReadPreference to readPreference.  Dispose of this object to restore the repository's original ReadPreference
+            </summary>
+            <param name="repo">The repository</param>
+            <param name="readPreference">The read preference</param>
+        </member>
+        <member name="M:Tucson.ReadPreferenceState.Dispose">
+            <summary>
+            Restores the repository read preference
+            </summary>
+        </member>
+        <member name="T:Tucson.ServiceBase">
+            <summary>
+            Provides a simple base class for all Tucson services.  Currently only implements standard Dispose() pattern.
+            </summary>
+        </member>
+        <member name="M:Tucson.ServiceBase.GetDefaultAllowReadPreferenceFromConfig">
+            <summary>
+            Gets the default configured read preference (appsettings key: DefaultAllowReadPreference).
+            When the config value is DirtyOk, this method returns AllowReadPreference.DirtyOk otherwise, it returns AllowReadPreference.MustBeCommitted
+            <seealso cref="P:Tucson.ServiceBase.DefaultConfiguredReadPreference"/>
+            </summary>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformCommittedReadAction(System.Action,Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of a committed read by setting the ReadPreference flag to AllowReadPreference.MustBeCommitted.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="repository">A repository to set the AllowDirtyRead flag</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformCommittedReadAction``1(System.Func{``0},Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of a committed read by setting the ReadPreference flag to AllowReadPreference.MustBeCommitted.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="repository">A repository to set the AllowDirtyRead flag</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformDirtyReadAction(System.Action,Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of dirty reads.  Helps make sure repo's ReadPreference flag is set to AllowReadPreference.DirtyOk.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformDirtyReadAction``1(System.Func{``0},Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of dirty reads.  Helps make sure repo's ReadPreference flag is set to AllowReadPreference.DirtyOk.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformReadPreferenceAction(Tucson.AllowReadPreference,System.Action,Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of dirty or non-dirty reads.  Helps make sure repo's ReadPreference flag is set correctly.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="readPreference">The value of ReadPreference</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+        </member>
+        <member name="M:Tucson.ServiceBase.PerformReadPreferenceAction``1(Tucson.AllowReadPreference,System.Func{``0},Tucson.IReadOnlyRepository[])">
+            <summary>
+            Performs an action within the context of dirty or non-dirty reads.  Helps make sure repo's ReadPreference flag is set correctly.
+            ReadPreference is restored after the completion of the action.
+            </summary>
+            <param name="readPreference">The value of ReadPreference</param>
+            <param name="actionToPerform">The action delegate to perform</param>
+            <param name="repository">A repository to set the ReadPreference flag</param>
+            <returns>The result of the action</returns>
+        </member>
+        <member name="P:Tucson.ServiceBase.DefaultConfiguredReadPreference">
+            <summary>
+            Gets the default configured read preference, computing the default only once.
+            <seealso cref="M:Tucson.ServiceBase.GetDefaultAllowReadPreferenceFromConfig"/>
+            </summary>
+        </member>
+        <member name="T:Tucson.TucsonTimings">
+            <summary>
+            methods for tucson timings
+            </summary>
+        </member>
+        <member name="M:Tucson.TucsonTimings.PerformTimedOperation``1(System.String,System.Func{``0})">
+            <summary>
+            Perform a timed operation and log the time it took to Splunk.  The operation name defaults to the calling method (which may disappear in release builds due to optimizations).
+            </summary>
+            <typeparam name="T">A return type</typeparam>
+            <param name="source">the source of the operation (use the type name)</param>
+            <param name="op">The delegate that performs the operation</param>
+            <returns>The time it took</returns>
+        </member>
+        <member name="M:Tucson.TucsonTimings.PerformTimedOperation(System.String,System.Action)">
+            <summary>
+            Perform a timed operation and log the time it took to Splunk.  The operation name defaults to the calling method (which may disappear in release builds due to optimizations).
+            </summary>
+            <param name="source">the source of the operation (use the type name)</param>
+            <param name="op">The delegate that performs the operation</param>
+            <returns>The time it took</returns>
+        </member>
+        <member name="M:Tucson.TucsonTimings.PerformTimedOperation``1(System.String,System.String,System.Func{``0})">
+            <summary>
+            Perform a timed operation and log the time it took to Splunk
+            </summary>
+            <typeparam name="T">A return type</typeparam>
+            <param name="source">the source of the operation (use the type name)</param>
+            <param name="opName">The name of the operation to perform</param>
+            <param name="op">The delegate that performs the operation</param>
+            <returns>The result of the operation and the time it took</returns>
+        </member>
+        <member name="M:Tucson.TucsonTimings.PerformTimedOperation(System.String,System.String,System.Action)">
+            <summary>
+            Perform a timed operation and log the time it took to Splunk
+            </summary>
+            <param name="source">the source of the operation (use the type name)</param>
+            <param name="opName">The name of the operation to perform</param>
+            <param name="op">The delegate that performs the operation</param>
+            <returns>The time it took</returns>
+        </member>
+        <member name="M:Tucson.TucsonTimings.SendToSplunk(System.String,System.String,System.Diagnostics.Stopwatch)">
+            <summary>
+            Sends a message to splunk, including the time.
+            </summary>
+            <param name="source">The source</param>
+            <param name="method"></param>
+            <param name="timer"></param>
+        </member>
+    </members>
+</doc>

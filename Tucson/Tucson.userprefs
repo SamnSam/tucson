@@ -1,0 +1,28 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Tucson.Core/MongoClient/Repository.cs">
+    <Files>
+      <File FileName="Tucson.Core/MongoClient/Repository.cs" Line="198" Column="60" />
+      <File FileName="Tucson.Core/IKeyedRepository.cs" Line="24" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Tucson.Core" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="MongoClient" expanded="True">
+              <Node name="Repository.cs" selected="True" />
+            </Node>
+            <Node name="Provider" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/samflint/Projects/Code/Tucson/Tucson.Core/EFClient/ReadOnlyRepository.cs" line="24" column="27" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SAJ.Utilities</name>
+    </assembly>
+    <members>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipCompress(System.String)">
+            <summary>
+            Compresses the specified text using GZipStream.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipCompress(System.Byte[])">
+            <summary>
+            Compresses the specified byte[] using GZipStream.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipCompressTextAsByteArray(System.String)">
+            <summary>
+            Compresses the specified string using GZipStream.
+            </summary>
+            <param name="text">The text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipDecompress(System.String)">
+            <summary>
+            Decompresses the specified compressed text using GZipStream.
+            </summary>
+            <param name="compressedText">The compressed text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipDecompress(System.Byte[])">
+            <summary>
+            Decompresses the specified compressed byte[] using GZipStream.
+            </summary>
+            <param name="gzBuffer">The gz buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Compression.CompressionUtil.GZipDecompressByteArrayAsString(System.Byte[])">
+            <summary>
+            Decompresses the specified compressed byte[] using GZipStream.
+            </summary>
+            <param name="gzBuffer">The gz buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.IEmailGatewayCollectionConfig">
+            <summary>
+            Interface for types used to configure EmailGateway.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayCollectionConfig.DefaultName">
+            <summary>
+            Gets or sets the name of the default gateway.
+            </summary>
+            <value>The host.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayCollectionConfig.EmailGateways">
+            <summary>
+            Gets the list of email gateways
+            </summary>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.EmailGateway">
+            <summary>
+            Gateway to the SMTP Email system.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.IEmailGateway">
+            <summary>
+            Interface for Email Gateway types.  Provided to allow for
+            mocking/stubbing the EmailGateway during testing.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.IEmailGateway.Send(System.String,System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Sends an Email.
+            </summary>
+            <param name="from">From.</param>
+            <param name="toAddresses">The addr.</param>
+            <param name="ccAddresses"></param>
+            <param name="bccAddresses">The BCC addr.</param>
+            <param name="subject">The subject.</param>
+            <param name="body">The body.</param>
+            <param name="isBodyFormatHtml">
+            <code>true</code> for html, <code>false</code> otherwise.
+            </param>
+            <exception cref="T:SAJ.Utilities.Mail.EmailGatewayException"></exception>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGateway.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGateway.Host">
+            <summary>
+            Gets the host.
+            </summary>
+            <value>The host.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGateway.Log">
+            <summary>
+            Gets or sets the log.
+            </summary>
+            <value>The log.</value>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAJ.Utilities.Mail.EmailGateway"/> class.
+            </summary>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.#ctor(SAJ.Utilities.Mail.IEmailGatewayConfig)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAJ.Utilities.Mail.EmailGateway"/> class.
+            </summary>
+            <param name="config">The config.</param>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.#ctor(System.String,System.String,SAJ.Utilities.Mail.EmailGateway.Mode,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SAJ.Utilities.Mail.EmailGateway"/> class.
+            </summary>
+            <param name="host">The host.</param>
+            <param name="mode">The mode.</param>
+            <param name="devModeEmailAddress">The dev email address.</param>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.Send(System.String,System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String},System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Sends an Email.
+            </summary>
+            <param name="fromAddress">From address.</param>
+            <param name="toAddresses">The TO addresses.</param>
+            <param name="ccAddresses">The CC addresses.</param>
+            <param name="bccAddresses">The BCC addresses.</param>
+            <param name="replyTo">The reply to addresses.</param>
+            <param name="subject">The subject.</param>
+            <param name="body">The body.</param>
+            <param name="route">The route.</param>
+            <param name="isBodyFormatHtml">
+            <code>true</code> for html, <code>false</code> otherwise.
+            </param>
+            <exception cref="T:SAJ.Utilities.Mail.EmailGatewayException"></exception>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetFormattedBccAddresses(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the BCC addresses.
+            </summary>
+            <param name="addresses">The addresses.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetFormattedCcAddresses(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the BCC addresses.
+            </summary>
+            <param name="addresses">The addresses.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetFormattedToAddresses(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the To addresses.
+            </summary>
+            <param name="addresses">The addresses.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetFormattedEmailAddressesString(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets the email addresses string.
+            </summary>
+            <param name="addresses">The addresses.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetNamedGatewayConfig(System.String)">
+            <summary>
+            Gets a named gateway configuration information.
+            </summary>
+            <param name="gatewayName">The name of the gate</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.GetDefaultConfig">
+            <summary>
+            Gets the default config.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGateway.IsNamedGatewayDefined(System.String)">
+            <summary>
+            Gets whether the specified gateway name is defined in the configuration file.
+            </summary>
+            <param name="gatewayName">The name to check for</param>
+            <returns>true if exists, false otherwise</returns>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.Host">
+            <summary>
+            Gets the host.
+            </summary>
+            <value>The host.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.ModeOfOperation">
+            <summary>
+            Gets the mode of operation.
+            </summary>
+            <value>The mode of operation.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.DevModeEmailAddress">
+            <summary>
+            Gets the dev email address.
+            </summary>
+            <value>The dev email address.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.LastMessageSent">
+            <summary>
+            Gets or sets the last message sent.
+            </summary>
+            <value>The last message sent.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.Log">
+            <summary>
+            Gets or sets the log.
+            </summary>
+            <value>The log.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGateway.IsDevMode">
+            <summary>
+            Gets a value indicating whether the current mode is Development.
+            </summary>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.EmailGateway.Mode">
+            <summary>
+            The mode of operation.
+            </summary>
+        </member>
+        <member name="F:SAJ.Utilities.Mail.EmailGateway.Mode.Dev">
+            <summary>
+            Development Mode - emails are sent only to the DevModeEmailAddress
+            </summary>
+        </member>
+        <member name="F:SAJ.Utilities.Mail.EmailGateway.Mode.Live">
+            <summary>
+            Live Production Mode - emails are sent to all recipients
+            </summary>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler">
+            <summary>
+            ConfigSectionHandler for configuring the EmailGateway via app.config.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.IEmailGatewayConfig">
+            <summary>
+            Interface for types used to configure EmailGateway.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayConfig.Name">
+            <summary>
+            Gets or sets the email gateway name.
+            </summary>
+            <value>The gateway name</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayConfig.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>The host.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayConfig.Mode">
+            <summary>
+            Gets or sets the mode.
+            </summary>
+            <value>The mode.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.IEmailGatewayConfig.DevModeEmailAddress">
+            <summary>
+            Gets or sets the dev mode email address.
+            </summary>
+            <value>The dev mode email address.</value>
+        </member>
+        <member name="F:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler.DefaultConfigSectionPath">
+            <summary>
+            Path to the config section.  Override value only if using a 
+            different path from the default.
+            </summary>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler.Name">
+            <summary>
+            Gets or sets the name of the gateway.
+            </summary>
+            <value>The name of the gateway (Unique).</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>The host.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler.Mode">
+            <summary>
+            Gets or sets the mode.
+            </summary>
+            <value>The mode.</value>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGatewayConfigSectionHandler.DevModeEmailAddress">
+            <summary>
+            Gets or sets the dev mode email address.
+            </summary>
+            <value>The dev mode email address.</value>
+        </member>
+        <member name="T:SAJ.Utilities.Mail.EmailGatewayException">
+            <summary>
+            Exception type for errors related to IEmailGateway operations.
+            </summary>
+            <author>Todd King</author>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGatewayException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the 
+            <see cref="T:SAJ.Utilities.Mail.EmailGatewayException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:SAJ.Utilities.Mail.EmailGatewayException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the 
+            <see cref="T:SAJ.Utilities.Mail.EmailGatewayException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The ex.</param>
+        </member>
+        <member name="F:SAJ.Utilities.Mail.EmailGatewayCollectionConfigSectionHandler.DefaultConfigSectionPath">
+            <summary>
+            Path to the config section.  Override value only if using a 
+            different path from the default.
+            </summary>
+        </member>
+        <member name="P:SAJ.Utilities.Mail.EmailGatewayCollectionConfigSectionHandler.DefaultName">
+            <summary>
+            Gets or sets the name of the gateway.
+            </summary>
+            <value>The name of the gateway (Unique).</value>
+        </member>
+    </members>
+</doc>

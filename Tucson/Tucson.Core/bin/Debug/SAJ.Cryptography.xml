@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SAJ.Cryptography</name>
+    </assembly>
+    <members>
+        <member name="T:SAJ.Cryptography.ISajCryptKeeper">
+            <summary>
+            the API for Saj Crypt Keeper implementations.
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.ISajCryptKeeper.GetPassword(System.String)">
+            <summary>
+            Gets the password.
+            </summary>
+            <param name="applicationName">Name of the application.</param>
+            <returns>The password.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ISajCryptKeeper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="password">The password.</param>
+            <param name="publicKey">The public key.  Can be null if the Crypt Keeper does not utilize a public key.</param>
+            <returns>Encrypted Data as Base64 encoded string.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ISajCryptKeeper.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the specified encrypted data.
+            </summary>
+            <param name="encryptedData">The encrypted data as Base64 encoded string.</param>
+            <param name="password">The password.</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ISajCryptKeeper.GetPublicKey">
+            <summary>
+            Gets the public key for the encryption algorithm.
+            </summary>
+            <returns>The Public Key data (if any).</returns>
+            <remarks>
+            If null is returned then the Crypt Keeper does not utilize a public key.
+            </remarks>
+        </member>
+        <member name="M:SAJ.Cryptography.ISajTokenGenerator.GenerateRandomToken(System.Int32)">
+            <summary>
+            Generate a random token as a base64 encoded string.
+            </summary>
+            <param name="numberOfBytes">The number of random bytes to use to generate the token.</param>
+            <returns>The generated token.</returns>
+        </member>
+        <member name="T:SAJ.Cryptography.PublicKeySajCryptKeeperImpl">
+            <summary>
+            The implementation of a PublicKey encryption container
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.GetCryptMode2(System.Byte[])">
+            <summary>
+            Parses an encrypted data array 
+            </summary>
+            <param name="encryptedData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.GetAes(System.String)">
+            <summary>
+            Gets a filled-in AesManaged object
+            </summary>
+            <param name="password">the password to use</param>
+            <returns>An instance of AesManaged</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.GetPassword(System.String)">
+            <summary>
+            Gets the password.
+            </summary>
+            <param name="applicationName">Name of the application.</param>
+            <returns>The password.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="password">The password.</param>
+            <param name="publicKey">The public key.  Can be null if the Crypt Keeper does not utilize a public key.</param>
+            <returns>Encrypted Data as Base64 encoded string.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the specified encrypted data.
+            </summary>
+            <param name="encryptedData">The encrypted data as Base64 encoded string.</param>
+            <param name="password">The password.</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.GetPublicKey">
+            <summary>
+            Gets the public key for the encryption algorithm.
+            </summary>
+            <returns>The Public Key data (if any).</returns>
+            <remarks>
+            If null is returned then the Crypt Keeper does not utilize a public key.
+            </remarks>
+        </member>
+        <member name="P:SAJ.Cryptography.PublicKeySajCryptKeeperImpl.Salt">
+            <summary>
+            Gets or sets the Salt to use during the encryption and decryption process.  If one doesn't exist, one is randomly created for you.
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyClientSajCryptKeeper.#ctor">
+            <summary>
+            Creates a new client
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyClientSajCryptKeeper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the specified data for a server's public key
+            </summary>
+            <param name="data">The data to encrypt.</param>
+            <param name="password">The password (may be null to use only Public/Private key encryption)</param>
+            <param name="publicKey">The public key of the machine/service to encrypt.</param>
+            <returns>Encrypted Data as Base64 encoded string.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyClientSajCryptKeeper.Decrypt(System.String,System.String)">
+            <summary>
+            Not implemented on the Client side.  Client can only Encrypt.
+            </summary>
+            <param name="encryptedData">Not used</param>
+            <param name="password">Not used</param>
+            <returns>Nothing, a NotImplementedException is thrown</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyClientSajCryptKeeper.GetPublicKey">
+            <summary>
+            Not implemented on the Client side.
+            </summary>
+            <returns>Nothing, a NotImplementedException is thrown</returns>
+        </member>
+        <member name="T:SAJ.Cryptography.ProtectedDataSajCryptKeeper">
+            <summary>
+            Saj Crypt Keeper that uses the DPAPI for implementation.
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.#ctor">
+            <summary>
+            Initializes a new instance of the 
+            <see cref="T:SAJ.Cryptography.ProtectedDataSajCryptKeeper"/> class.
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.#ctor(System.Text.Encoding)">
+            <summary>
+            Initializes a new instance of the
+             <see cref="T:SAJ.Cryptography.ProtectedDataSajCryptKeeper"/> class.
+            </summary>
+            <param name="encoding">The encoding.</param>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.GetPassword(System.String)">
+            <summary>
+            Gets the password.
+            </summary>
+            <param name="applicationName">Name of the application.</param>
+            <returns>The password.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="password">The password.</param>
+            <param name="publicKey">The public key.  Can be null if the
+            Crypt Keeper does not utilize a public key.</param>
+            <returns>Encrypted Data as Base64 encoded string.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the specified encrypted data.
+            </summary>
+            <param name="encryptedData">The encrypted data as Base64 encoded
+            string.</param>
+            <param name="password">The password.</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.GetPublicKey">
+            <summary>
+            Creates the crypt.
+            </summary>
+            <returns>Public Key data (if any).</returns>
+            <remarks>If null is returned then the Crypt Keeper does not utilize a  public key.</remarks>
+        </member>
+        <member name="M:SAJ.Cryptography.ProtectedDataSajCryptKeeper.Dispose">
+            <summary>
+            Disposes any resources
+            </summary>
+        </member>
+        <member name="P:SAJ.Cryptography.ProtectedDataSajCryptKeeper.Encoding">
+            <summary>
+            Gets or sets the encoding.
+            </summary>
+            <value>The encoding.</value>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyHelper.GetAes(System.String,System.Byte[])">
+            <summary>
+            Gets a filled-in AesManaged object
+            </summary>
+            <param name="password">the password to use</param>
+            <param name="salt">List of bytes for the salt - must be at least 8 bytes</param>
+            <returns>An instance of AesManaged</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyHelper.Encode(System.Byte[])">
+            <summary>
+            Creates a base64url encoded string from the byte array
+            </summary>
+            <param name="p"></param>
+            <returns>The base64url encoded string or an empty string</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyHelper.Decode(System.String)">
+            <summary>
+            Decodes a base64url encoded string to the original byte array (or null)
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeper.CreateClient">
+            <summary>
+            Create a client-side PublicKey Crypt Keeper - the side that will encrypt the data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeper.CreateServer">
+            <summary>
+            Create a server-side PublicKey Crypt Keeper - the side that will decrypt the data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeper.CreateCustomServer(System.String)">
+            <summary>
+            Create a server-side PublicKey Crypt Keeper - the side that will decrypt the data - using a custom container name
+            </summary>
+            <param name="containerName">Name of key container to store the public/private key (for example, use the name of the application)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeper.GetEncryptedValueFromConfig(System.String,System.String,SAJ.Cryptography.PublicKeySajCryptKeeper.ConfigType,System.String,System.Boolean)">
+            <summary>
+            Gets an encrypted value from a configuration file.  It also optionally encrypts it if the value is not already encryptyed.
+            </summary>
+            <param name="password">The password to use to encrypt/decrypt the configuration value</param>
+            <param name="salt">The salt to use to encrypt/decrypt the configuration value</param>
+            <param name="configSection">The section to use from the config</param>
+            <param name="sectionKey">The key value from the appsettings branch</param>
+            <param name="updateConfigFile">True whether to update the config file - note that you must have permissions to write to the file to do this!</param>
+            <returns>The plain text string from the app settings</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeySajCryptKeeper.GetEncryptedValueFromConfigUsingCustomContainer(System.String,System.String,System.String,SAJ.Cryptography.PublicKeySajCryptKeeper.ConfigType,System.String,System.Boolean)">
+            <summary>
+            Gets an encrypted value from a configuration file.  It also optionally encrypts it if the value is not already encryptyed.
+            </summary>
+            <param name="containerName">The name of the key container (use the name of your application)</param>
+            <param name="password">The password to use to encrypt/decrypt the configuration value</param>
+            <param name="salt">The salt to use to encrypt/decrypt the configuration value</param>
+            <param name="configSection">The section to use from the config</param>
+            <param name="sectionKey">The key value from the appsettings branch</param>
+            <param name="updateConfigFile">True whether to update the config file - note that you must have permissions to write to the file to do this!</param>
+            <returns>The plain text string from the app settings</returns>
+        </member>
+        <member name="T:SAJ.Cryptography.PublicKeySajCryptKeeper.ConfigType">
+            <summary>
+            The type of configuration file section to use
+            </summary>
+        </member>
+        <member name="F:SAJ.Cryptography.PublicKeySajCryptKeeper.ConfigType.AppSettings">
+            <summary>
+            Use the Appsettings section value
+            </summary>
+        </member>
+        <member name="F:SAJ.Cryptography.PublicKeySajCryptKeeper.ConfigType.ConnectionStrings">
+            <summary>
+            Use a connection string value
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyServerSajCryptKeeper.#ctor(System.String)">
+            <summary>
+            Creates a server-side public key crypt keeper
+            </summary>
+            <param name="containerName">the name of the container to store the public/private key pair</param>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyServerSajCryptKeeper.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the specified encrypted data.
+            </summary>
+            <param name="encryptedData">The encrypted data as Base64 encoded
+             string.</param>
+            <param name="password">The password (may be null to use only Public/Private key encryption)</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyServerSajCryptKeeper.GetPublicKey">
+            <summary>
+            Creates the public key for the server.
+            </summary>
+            <returns>Public Key data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.PublicKeyServerSajCryptKeeper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Not implemented in the Server implementation.  Server can only decrypt data.
+            </summary>
+            <param name="data"></param>
+            <param name="password"></param>
+            <param name="publicKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SAJ.Cryptography.SajCryptKeeper">
+            <summary>
+            Factory for the Saj Crypt Keeper.
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.SajCryptKeeper.CreatePublicKeyClient">
+            <summary>
+            Create a client-side PublicKey Crypt Keeper - the side that will encrypt the data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SajCryptKeeper.CreatePublicKeyServer">
+            <summary>
+            Create a server-side PublicKey Crypt Keeper - the side that will decrypt the data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SajCryptKeeper.CreatePublicKeyCustomServer(System.String)">
+            <summary>
+            Create a server-side PublicKey Crypt Keeper - the side that will decrypt the data - using a custom container name
+            </summary>
+            <param name="containerName">Name of key container to store the public/private key (for example, use the name of the application)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SajCryptKeeper.CreateSymmetricCryptKeeper">
+            <summary>
+            Create a symmetric Crypt Keeper (public key not used)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SajBase64TokenGenerator.GenerateRandomToken(System.Int32)">
+            <summary>
+            Generate a random token as a base64url encoded string.
+            </summary>
+            <param name="numberOfBytes">The number of random bytes to use to generate the token.</param>
+            <returns>The generated token.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SajTokenGeneratorFactory.CreateBase64TokenGenerator">
+            <summary>
+            Create an ISajTokenGenerator that creates random base64url encoded tokens.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SAJ.Cryptography.SymmetricCryptKeeper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SAJ.Cryptography.SymmetricCryptKeeper.GetPassword(System.String)">
+            <summary>
+            Gets the password.
+            </summary>
+            <param name="applicationName">Name of the application.</param>
+            <returns>The password.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SymmetricCryptKeeper.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypts the specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="password">The password.</param>
+            <param name="publicKey">The public key.  Can be null if the Crypt Keeper does not utilize a public key.</param>
+            <returns>Encrypted Data as Base64 encoded string.</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SymmetricCryptKeeper.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypts the specified encrypted data.
+            </summary>
+            <param name="encryptedData">The encrypted data as Base64 encoded string.</param>
+            <param name="password">The password.</param>
+            <returns>Decrypted Data</returns>
+        </member>
+        <member name="M:SAJ.Cryptography.SymmetricCryptKeeper.GetPublicKey">
+            <summary>
+            Gets the public key for the encryption algorithm. (not implemented)
+            </summary>
+            <returns>The Public Key data (if any).</returns>
+            <remarks>
+            If null is returned then the Crypt Keeper does not utilize a public key.
+            </remarks>
+        </member>
+        <member name="M:SAJ.Cryptography.SymmetricCryptKeeper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="P:SAJ.Cryptography.SymmetricCryptKeeper.Salt">
+            <summary>
+            Gets or sets the Salt (must be at least 8 characters).  Default is a random GUID
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 11.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="11.0">
+ <Namespaces>
+  <Namespace Name="Tucson.Provider">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Tucson.Provider' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="D:\Code\Tucson\Master\Tucson\Tucson.Core\bin\Debug\Tucson.Core.dll">
+   <Modules>
+    <Module Name="tucson.core.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'Tucson.Core.dll' with a strong name key.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="Tucson">
+       <Types>
+        <Type Name="IReadOnlyRepository`1" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#FilterBy(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Consider a design where 'IReadOnlyRepository&lt;TEntity&gt;.FilterBy(Expression&lt;Func&lt;TEntity, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#FindBy(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Consider a design where 'IReadOnlyRepository&lt;TEntity&gt;.FindBy(Expression&lt;Func&lt;TEntity, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQuery`1(System.Func`1&lt;System.Linq.IQueryable`1&lt;!!0&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Consider a design where 'IReadOnlyRepository&lt;TEntity&gt;.PerformQuery&lt;T&gt;(Func&lt;IQueryable&lt;T&gt;&gt;)' doesn't nest generic type 'Func&lt;IQueryable&lt;T&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQuery`1(System.String,System.Func`1&lt;System.Linq.IQueryable`1&lt;!!0&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError">Consider a design where 'IReadOnlyRepository&lt;TEntity&gt;.PerformQuery&lt;T&gt;(string, Func&lt;IQueryable&lt;T&gt;&gt;)' doesn't nest generic type 'Func&lt;IQueryable&lt;T&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IReadOnlyRepositoryExtensions" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#PerformReadPreferenceAction`1(Tucson.IReadOnlyRepository,Tucson.AllowReadPreference,System.Func`1&lt;!!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="IReadOnlyRepository.Extensions.cs" Line="118">In externally visible method 'IReadOnlyRepositoryExtensions.PerformReadPreferenceAction&lt;T&gt;(this IReadOnlyRepository, AllowReadPreference, Func&lt;T&gt;)', validate parameter 'actionToPerform' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ITucsonSettings" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Define a custom attribute to replace 'ITucsonSettings'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="LazyPropertySetter" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#SetProp`2(!!0,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,!!1&gt;&gt;,!!1)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="28">Consider changing the type of parameter 'getProperty' in 'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)' from 'Expression&lt;Func&lt;T, TR&gt;&gt;' to its base type 'LambdaExpression'. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Issue>
+            </Message>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="28">Consider a design where 'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)' doesn't nest generic type 'Expression&lt;Func&lt;T, TR&gt;&gt;'.</Issue>
+            </Message>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="31">'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="R" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="MethodTypeParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="28">On method 'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)', consider providing a more meaningful name than generic type parameter name 'TR'.</Issue>
+            </Message>
+            <Message Id="newvalue" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="28">In method 'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)', correct the spelling of 'newvalue' in parameter name 'newvalue' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="getProperty" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="31">Correct the spelling of the unrecognized token 'getProperty' in the literal '"getProperty method must return a property!"'.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="LazyPropertySetter.cs" Line="29">In externally visible method 'LazyPropertySetter.SetProp&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;, TR)', validate parameter 'getProperty' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ReadPreferenceState" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Name="ProvideDisposeBool" Certainty="95" Level="Error">Provide an overridable implementation of Dispose(bool) on 'ReadPreferenceState' or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(Tucson.IReadOnlyRepository,Tucson.AllowReadPreference)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ReadPreferenceState.cs" Line="20">In externally visible method 'ReadPreferenceState.ReadPreferenceState(IReadOnlyRepository, AllowReadPreference)', validate parameter 'repo' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Dispose()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="CallGCSuppressFinalizeCorrectly" Category="Microsoft.Usage" CheckId="CA1816" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="NotCalled" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ReadPreferenceState.cs" Line="30">Change 'ReadPreferenceState.Dispose()' to call 'GC.SuppressFinalize(object)'. This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.</Issue>
+            </Message>
+            <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="DisposeImplementation" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ReadPreferenceState.cs" Line="30">Modify 'ReadPreferenceState.Dispose()' so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ServiceBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.cctor()" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="90" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ServiceBase.cs" Line="24">Initialize all static fields in 'ServiceBase' when those fields are declared and remove the explicit static constructor.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetDefaultAllowReadPreferenceFromConfig()" Kind="Method" Static="True" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ServiceBase.cs" Line="34">Change 'ServiceBase.GetDefaultAllowReadPreferenceFromConfig()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformReadPreferenceAction`1(Tucson.AllowReadPreference,System.Func`1&lt;!!0&gt;,Tucson.IReadOnlyRepository[])" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ServiceBase.cs" Line="146">The 'this' parameter (or 'Me' in Visual Basic) of 'ServiceBase.PerformReadPreferenceAction&lt;T&gt;(AllowReadPreference, Func&lt;T&gt;, params IReadOnlyRepository[])' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="ServiceBase.cs" Line="153">In externally visible method 'ServiceBase.PerformReadPreferenceAction&lt;T&gt;(AllowReadPreference, Func&lt;T&gt;, params IReadOnlyRepository[])', validate parameter 'actionToPerform' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="TucsonTimings" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#PerformTimedOperation`1(System.String,System.String,System.Func`1&lt;!!0&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="53">In externally visible method 'TucsonTimings.PerformTimedOperation&lt;T&gt;(string, string, Func&lt;T&gt;)', validate parameter 'op' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SendToSplunk(System.String,System.String,System.Diagnostics.Stopwatch)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="SAJ.Core.Splunk.Send(System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="92">Method 'TucsonTimings.SendToSplunk(string, string, Stopwatch)' passes a literal string as parameter 'message' of a call to 'Splunk.Send(string)'. Retrieve the following string(s) from a resource table instead: "Time=,  Source=,  Method=,  TimeElapsed=".</Issue>
+            </Message>
+            <Message Id="Splunk" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="90">Correct the spelling of 'Splunk' in member name 'TucsonTimings.SendToSplunk(string, string, Stopwatch)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="TimeElapsed" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="92">Correct the spelling of the unrecognized token 'TimeElapsed' in the literal '" TimeElapsed="'.</Issue>
+            </Message>
+            <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="91">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'TucsonTimings.SendToSplunk(string, string, Stopwatch)' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="2" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core" File="TucsonTimings.cs" Line="91">In externally visible method 'TucsonTimings.SendToSplunk(string, string, Stopwatch)', validate parameter 'timer' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Tucson.EFClient">
+       <Types>
+        <Type Name="Context" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Name="IDisposableReimplementation" Certainty="95" Level="Error">Remove IDisposable from the list of interfaces implemented by 'Context' and override the base class Dispose implementation instead.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IContextFactory" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetContext()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IContextFactory.GetContext()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="KeyedReadOnlyRepository`2" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Name="IDisposableReimplementation" Certainty="95" Level="Error">Remove IDisposable from the list of interfaces implemented by 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;' and override the base class Dispose implementation instead.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#EnablePropertyChangeMonitor" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#set_EnablePropertyChangeMonitor(System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message Id="value" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+               <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="KeyedReadOnlyRepository.cs" Line="29">Parameter 'value' of 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.EnablePropertyChangeMonitor.set(bool)' is never used. Remove the parameter or use it in the method body.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="NonKeyedRepository`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Name="IDisposableReimplementation" Certainty="95" Level="Error">Remove IDisposable from the list of interfaces implemented by 'NonKeyedRepository&lt;TEntity&gt;' and override the base class Dispose implementation instead.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="ReadOnlyRepository`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#EntitySetName" Kind="Property" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_EntitySetName()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="125">'ReadOnlyRepository&lt;TEntity&gt;.EntitySetName.get()' creates an exception of type 'ApplicationException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
+              </Message>
+              <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+               <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="125">'ReadOnlyRepository&lt;TEntity&gt;.EntitySetName.get()' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+              </Message>
+              <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+               <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="129">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'ReadOnlyRepository&lt;TEntity&gt;.EntitySetName.get()' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#LoadProperty(!0,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!0,System.Object&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="161">Consider a design where 'ReadOnlyRepository&lt;TEntity&gt;.LoadProperty(TEntity, Expression&lt;Func&lt;TEntity, object&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;TEntity, object&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ObjectContext" Kind="Property" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_ObjectContext()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="97">'ReadOnlyRepository&lt;TEntity&gt;.ObjectContext.get()' creates an exception of type 'ApplicationException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
+              </Message>
+              <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+               <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="97">'ReadOnlyRepository&lt;TEntity&gt;.ObjectContext.get()' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+              </Message>
+              <Message Id="ObjectContext" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+               <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="97">Correct the spelling of the unrecognized token 'ObjectContext' in the literal '"Unable to cast Context into ObjectContext"'.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#RetryAction`1(System.Func`1&lt;!!0&gt;,System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\EFClient" File="ReadOnlyRepository.cs" Line="264">The 'this' parameter (or 'Me' in Visual Basic) of 'ReadOnlyRepository&lt;TEntity&gt;.RetryAction&lt;T&gt;(Func&lt;T&gt;, int)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Repository`2" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Name="IDisposableReimplementation" Certainty="95" Level="Error">Remove IDisposable from the list of interfaces implemented by 'Repository&lt;TKey, TEntity&gt;' and override the base class Dispose implementation instead.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Tucson.MongoClient">
+       <Types>
+        <Type Name="Database" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ActOnDatabase`1(System.Func`2&lt;MongoDB.Driver.MongoDatabase,!!0&gt;)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ActOn" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeDiscreteTerm" Certainty="80" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="94">The compound word 'ActOn' in member name 'Database.ActOnDatabase&lt;T&gt;(Func&lt;MongoDatabase, T&gt;)' exists as a discrete term. If your usage is intended to be single word, case it as 'Acton' or strip the first token entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ActOnDatabase`1(System.Func`2&lt;MongoDB.Driver.MongoDatabase,!!0&gt;,System.Nullable`1&lt;MongoDB.Driver.ReadPreferenceMode&gt;)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ActOn" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeDiscreteTerm" Certainty="80" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="99">The compound word 'ActOn' in member name 'Database.ActOnDatabase&lt;T&gt;(Func&lt;MongoDatabase, T&gt;, ReadPreferenceMode?)' exists as a discrete term. If your usage is intended to be single word, case it as 'Acton' or strip the first token entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="198">'Database.ActOnDatabase&lt;T&gt;(Func&lt;MongoDatabase, T&gt;, ReadPreferenceMode?)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="safeMode" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="165">Correct the spelling of the unrecognized token 'safeMode' in the literal '" safeMode:"'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object[])" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="165">Because the behavior of 'string.Format(string, params object[])' could vary based on the current user's locale settings, replace this call in 'Database.ActOnDatabase&lt;T&gt;(Func&lt;MongoDatabase, T&gt;, ReadPreferenceMode?)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="143">In externally visible method 'Database.ActOnDatabase&lt;T&gt;(Func&lt;MongoDatabase, T&gt;, ReadPreferenceMode?)', validate parameter 'act' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetCollection`1(MongoDB.Driver.MongoDatabase,System.String,MongoDB.Driver.IMongoCollectionOptions)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="330">'Database.GetCollection&lt;T&gt;(MongoDatabase, string, IMongoCollectionOptions)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="CollectionCreatedCheck" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Database.cs" Line="330">Correct the spelling of the unrecognized token 'CollectionCreatedCheck' in the literal '"Unexpected behavior: CollectionCreatedCheck returned false"'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IDatabaseFactory" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetDatabase()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IDatabaseFactory.GetDatabase()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="KeyedReadOnlyRepository`2" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ActOnRepository(System.Action)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ActOn" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeDiscreteTerm" Certainty="80" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="451">The compound word 'ActOn' in member name 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.ActOnRepository(Action)' exists as a discrete term. If your usage is intended to be single word, case it as 'Acton' or strip the first token entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LogRetryEvent(Tucson.MongoClient.KeyedReadOnlyRepository`2&lt;!0,!1&gt;+EnumRetryEventType)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Console.WriteLine(System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="630">Method 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.LogRetryEvent(KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.EnumRetryEventType)' passes a literal string as parameter 'value' of a call to 'Console.WriteLine(string)'. Retrieve the following string(s) from a resource table instead: "Error incrementing StatsD counter: ".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="627">Modify 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.LogRetryEvent(KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.EnumRetryEventType)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="StatsD" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="630">Correct the spelling of the unrecognized token 'StatsD' in the literal '"Error incrementing StatsD counter: "'.</Issue>
+            </Message>
+            <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="624">Because the behavior of 'string.ToLower()' could vary based on the current user's locale settings, replace this call in 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.LogRetryEvent(KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.EnumRetryEventType)' with a call to 'string.ToLower(CultureInfo)'. If the result of 'string.ToLower(CultureInfo)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="624">Because the behavior of 'string.Format(string, object)' could vary based on the current user's locale settings, replace this call in 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.LogRetryEvent(KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.EnumRetryEventType)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQuery`1(System.Func`2&lt;Tucson.MongoClient.KeyedReadOnlyRepository`2&lt;!0,!1&gt;,System.Linq.IQueryable`1&lt;!!0&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="364">Consider a design where 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.PerformQuery&lt;T&gt;(Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, IQueryable&lt;T&gt;&gt;)' doesn't nest generic type 'Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, IQueryable&lt;T&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQuery`1(System.String,System.Func`2&lt;Tucson.MongoClient.KeyedReadOnlyRepository`2&lt;!0,!1&gt;,System.Linq.IQueryable`1&lt;!!0&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="388">Consider a design where 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.PerformQuery&lt;T&gt;(string, Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, IQueryable&lt;T&gt;&gt;)' doesn't nest generic type 'Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, IQueryable&lt;T&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQueryForItem`1(System.Func`2&lt;Tucson.MongoClient.KeyedReadOnlyRepository`2&lt;!0,!1&gt;,!!0&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="410">Consider a design where 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.PerformQueryForItem&lt;T&gt;(Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, T&gt;)' doesn't nest generic type 'Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, T&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#PerformQueryForItem`1(System.String,System.Func`2&lt;Tucson.MongoClient.KeyedReadOnlyRepository`2&lt;!0,!1&gt;,!!0&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="KeyedReadOnlyRepository.cs" Line="438">Consider a design where 'KeyedReadOnlyRepository&lt;TKey, TEntity&gt;.PerformQueryForItem&lt;T&gt;(string, Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, T&gt;)' doesn't nest generic type 'Func&lt;KeyedReadOnlyRepository&lt;TKey, TEntity&gt;, T&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MongoMapFactory" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AddMap(Tucson.MongoClient.IMongoMap)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="25">In externally visible method 'MongoMapFactory.AddMap(IMongoMap)', validate parameter 'instance' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetMongoElementName(System.Type,System.Linq.Expressions.Expression)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="102">'MongoMapFactory.GetMongoElementName(Type, Expression)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="getProperty" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="102">Correct the spelling of the unrecognized token 'getProperty' in the literal '"getProperty method must return a property!"'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetMongoElementName(System.Type,System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="82">'MongoMapFactory.GetMongoElementName(Type, string)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="86">'MongoMapFactory.GetMongoElementName(Type, string)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="t" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="79">In method 'MongoMapFactory.GetMongoElementName(Type, string)', consider providing a more meaningful name than parameter name 't'.</Issue>
+            </Message>
+            <Message Id="BsonClassMap" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="82">Correct the spelling of the unrecognized token 'BsonClassMap' in the literal '"Unable to find BsonClassMap for type "'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="82">In externally visible method 'MongoMapFactory.GetMongoElementName(Type, string)', validate parameter 't' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetMongoElementName`1(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Object&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="68">Consider changing the type of parameter 'getProperty' in 'MongoMapFactory.GetMongoElementName&lt;T&gt;(Expression&lt;Func&lt;T, object&gt;&gt;)' from 'Expression&lt;Func&lt;T, object&gt;&gt;' to its base type 'LambdaExpression'. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Issue>
+            </Message>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="68">Consider a design where 'MongoMapFactory.GetMongoElementName&lt;T&gt;(Expression&lt;Func&lt;T, object&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, object&gt;&gt;'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="69">In externally visible method 'MongoMapFactory.GetMongoElementName&lt;T&gt;(Expression&lt;Func&lt;T, object&gt;&gt;)', validate parameter 'getProperty' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetMongoElementName`2(!!0,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,!!1&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="57">Consider changing the type of parameter 'getProperty' in 'MongoMapFactory.GetMongoElementName&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;)' from 'Expression&lt;Func&lt;T, TR&gt;&gt;' to its base type 'LambdaExpression'. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Issue>
+            </Message>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="57">Consider a design where 'MongoMapFactory.GetMongoElementName&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, TR&gt;&gt;'.</Issue>
+            </Message>
+            <Message Id="R" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="MethodTypeParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="57">On method 'MongoMapFactory.GetMongoElementName&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;)', consider providing a more meaningful name than generic type parameter name 'TR'.</Issue>
+            </Message>
+            <Message Id="me" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="57">Parameter 'me' of 'MongoMapFactory.GetMongoElementName&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;)' is never used. Remove the parameter or use it in the method body.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoMapFactory.cs" Line="58">In externally visible method 'MongoMapFactory.GetMongoElementName&lt;T, TR&gt;(this T, Expression&lt;Func&lt;T, TR&gt;&gt;)', validate parameter 'getProperty' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MongoUrlFactory" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#.cctor()" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="NoAllowedExceptions" Certainty="90" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="37">'MongoUrlFactory.MongoUrlFactory()' creates an exception of type 'ApplicationException'. Exceptions should not be raised in this type of method. If this exception instance might be raised, change this method's logic so it no longer raises an exception.</Issue>
+            </Message>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="37">'MongoUrlFactory.MongoUrlFactory()' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="90" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="13">Initialize all static fields in 'MongoUrlFactory' when those fields are declared and remove the explicit static constructor.</Issue>
+            </Message>
+            <Message Id="ReadPreferenceMode" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="37">Correct the spelling of the unrecognized token 'ReadPreferenceMode' in the literal '"Uh, oh!  Mongo\'s ReadPreferenceMode is not an expected value!"'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DecryptPassword(MongoDB.Driver.MongoUrl)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="175">In method 'MongoUrlFactory.DecryptPassword(MongoUrl)', call System.IDisposable.Dispose on object 'crypto' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetConnectionString(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.StartsWith(System.String,System.StringComparison)" TypeName="UseOrdinalStringComparison" Category="Microsoft.Globalization" CheckId="CA1309" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="StringComparison" Certainty="75" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="148">'MongoUrlFactory.GetConnectionString(string)' passes 'StringComparison.InvariantCultureIgnoreCase' as the 'StringComparison' parameter to 'string.StartsWith(string, StringComparison)'. To perform a non-linguistic comparison, specify 'StringComparison.Ordinal' or 'StringComparison.OrdinalIgnoreCase' instead.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetUrl(System.String,System.Nullable`1&lt;MongoDB.Driver.ReadPreferenceMode&gt;,System.Nullable`1&lt;System.TimeSpan&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="MongoUrlFactory.cs" Line="76">Modify 'MongoUrlFactory.GetUrl(string, ReadPreferenceMode?, TimeSpan?)' to catch a more specific exception than 'object' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Repository`2" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.cctor()" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="90" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="33">Initialize all static fields in 'Repository&lt;TKey, TEntity&gt;' when those fields are declared and remove the explicit static constructor.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Tucson.MongoClient.IDatabaseFactory,System.String,System.Func`1&lt;System.Collections.Generic.IEnumerable`1&lt;Tucson.MongoClient.IndexDefinition&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="indexDefinitionFunc" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="79">Parameter 'indexDefinitionFunc' of 'Repository&lt;TKey, TEntity&gt;.Repository(IDatabaseFactory, string, Func&lt;IEnumerable&lt;IndexDefinition&gt;&gt;)' is never used. Remove the parameter or use it in the method body.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GenerateId(System.Type,System.Object)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="458">Because the behavior of 'string.ToLower()' could vary based on the current user's locale settings, replace this call in 'Repository&lt;TKey, TEntity&gt;.GenerateId(Type, object)' with a call to 'string.ToLower(CultureInfo)'. If the result of 'string.ToLower(CultureInfo)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GenerateUpdate(Tucson.MongoClient.ChangeMonitor.IMongoModelChangeMonitor,System.Object)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="433">The 'this' parameter (or 'Me' in Visual Basic) of 'Repository&lt;TKey, TEntity&gt;.GenerateUpdate(IMongoModelChangeMonitor, object)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SwallowSafeModeResult(MongoDB.Driver.SafeModeResult)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="smr" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="356">In method 'Repository&lt;TKey, TEntity&gt;.SwallowSafeModeResult(SafeModeResult)', correct the spelling of 'smr' in parameter name 'smr' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Upsert(!1)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Upsert" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient" File="Repository.cs" Line="165">Correct the spelling of 'Upsert' in member name 'Repository&lt;TKey, TEntity&gt;.Upsert(TEntity)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Tucson.MongoClient.ChangeMonitor">
+       <Types>
+        <Type Name="ChangeInterceptor" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#GetMongoName(System.String,System.String)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptor.cs" Line="69">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'ChangeInterceptor.GetMongoName(string, string)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsValueEqual(System.Object,System.Object)" Kind="Method" Static="True" Accessibility="Family" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="Parameter" Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptor.cs" Line="99">'newvalue', a parameter, is cast to type 'IList' multiple times in method 'ChangeInterceptor.IsValueEqual(object, object)'. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant castclass instruction.</Issue>
+             <Issue Name="Parameter" Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptor.cs" Line="99">'oldvalue', a parameter, is cast to type 'IList' multiple times in method 'ChangeInterceptor.IsValueEqual(object, object)'. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant castclass instruction.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ChangeInterceptorForIList" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#Intercept(Castle.DynamicProxy.IInvocation)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="200">In externally visible method 'ChangeInterceptorForIList.Intercept(IInvocation)', validate parameter 'invocation' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="136">'ChangeInterceptorForIList.SetChanges(string, UpdateBuilder)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="147">'ChangeInterceptorForIList.SetChanges(string, UpdateBuilder)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="ChangeEnums" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="147">Correct the spelling of the unrecognized token 'ChangeEnums' in the literal '"Missing case for ChangeEnums value "'.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="104">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'ChangeInterceptorForIList.SetChanges(string, UpdateBuilder)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="ChangeInterceptorForIList.cs" Line="138">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'ChangeInterceptorForIList.SetChanges(string, UpdateBuilder)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="MongoChangeProxyFactory+MongoChangeProxyCreator" Kind="Class" Accessibility="Private" ExternallyVisible="False">
+         <Members>
+          <Member Name="#GetPropInfoGetSetDictionary(System.Type)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="MongoChangeProxyFactory.cs" Line="161">'MongoChangeProxyFactory.MongoChangeProxyCreator.GetPropInfoGetSetDictionary(Type)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GetPropInfoGetSetList(System.Type)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="MongoChangeProxyFactory.cs" Line="166">'MongoChangeProxyFactory.MongoChangeProxyCreator.GetPropInfoGetSetList(Type)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="PropertyChangeInterceptor" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#ArraysAreTheSame(System.Array,System.Array)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="169">The 'this' parameter (or 'Me' in Visual Basic) of 'PropertyChangeInterceptor.ArraysAreTheSame(Array, Array)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Intercept(Castle.DynamicProxy.IInvocation)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="241">'PropertyChangeInterceptor.Intercept(IInvocation)' creates an exception of type 'ApplicationException', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+            <Message Id="System.String.StartsWith(System.String)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="223">Because the behavior of 'string.StartsWith(string)' could vary based on the current user's locale settings, replace this call in 'PropertyChangeInterceptor.Intercept(IInvocation)' with a call to 'string.StartsWith(string, StringComparison)'. If the result of 'string.StartsWith(string, StringComparison)' will be displayed to the user, such as when sorting a list of items for display in a list box, specify 'StringComparison.CurrentCulture' or 'StringComparison.CurrentCultureIgnoreCase' as the 'StringComparison' parameter. If comparing case-insensitive identifiers, such as file paths, environment variables, or registry keys and values, specify 'StringComparison.OrdinalIgnoreCase'. Otherwise, if comparing case-sensitive identifiers, specify 'StringComparison.Ordinal'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="222">In externally visible method 'PropertyChangeInterceptor.Intercept(IInvocation)', validate parameter 'invocation' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ListUpdate(System.Collections.ICollection,MongoDB.Bson.BsonArray)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="199">'o', a variable, is cast to type 'ICollection' multiple times in method 'PropertyChangeInterceptor.ListUpdate(ICollection, BsonArray)'. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant castclass instruction.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetChanges(System.String,MongoDB.Driver.Builders.UpdateBuilder)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="111">'v', a variable, is cast to type 'ICollection' multiple times in method 'PropertyChangeInterceptor.SetChanges(string, UpdateBuilder)'. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant castclass instruction.</Issue>
+            </Message>
+            <Message Id="skip" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Warning" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="72">'PropertyChangeInterceptor.SetChanges(string, UpdateBuilder)' declares a variable, 'skip', of type 'List&lt;PropInfoGetSet&gt;', which is never used or is only assigned to. Use this variable or remove it.</Issue>
+            </Message>
+            <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="d:\Code\Tucson\Master\Tucson\Tucson.Core\MongoClient\ChangeMonitor" File="PropertyChangeInterceptor.cs" Line="157">Because the behavior of 'string.Format(string, object, object)' could vary based on the current user's locale settings, replace this call in 'PropertyChangeInterceptor.SetChanges(string, UpdateBuilder)' with a call to 'string.Format(IFormatProvider, string, params object[])'. If the result of 'string.Format(IFormatProvider, string, params object[])' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Tucson.Provider">
+       <Types>
+        <Type Name="ITucsonProvider" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2013-06-10 04:52:51Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Define a custom attribute to replace 'ITucsonProvider'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Assemblies should have valid strong names</Name>
+   <Description>Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly's contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</Description>
+   <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
+   <Name>Avoid empty interfaces</Name>
+   <Description>Interfaces are meant to contain members that specify a set of behaviors. To mark or label a class, use an attribute instead of an empty interface.</Description>
+   <Resolution Name="Default">Define a custom attribute to replace {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182128(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+   <Name>Avoid namespaces with few types</Name>
+   <Description>A namespace should generally have more than five types.</Description>
+   <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182130(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+   <Name>Avoid uncalled private code</Name>
+   <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182264(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="CallGCSuppressFinalizeCorrectly" Category="Microsoft.Usage" CheckId="CA1816">
+   <Name>Call GC.SuppressFinalize correctly</Name>
+   <Description>Call GC.SuppressFinalize to suppress finalization of your instance once Dispose has been called. Objects that implement IDisposable should call SuppressFinalize from the IDisposable.Dispose method to prevent the garbage collector from calling Object.Finalize on an object that does not require it.</Description>
+   <Resolution Name="NotCalled">Change {0} to call {1}. This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182269(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="usagerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+   <Name>Compound words should be cased correctly</Name>
+   <Description>Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</Description>
+   <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264474(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="80">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011">
+   <Name>Consider passing base types as parameters</Name>
+   <Description>Using base types as parameters to methods improves re-use of these methods if you only use methods &amp; properties from the parameter's base class. E.g. use Stream instead of FileStream as a parameter when only calling Stream.Read(), this makes the method work on all kind of streams instead of just File streams.</Description>
+   <Resolution Name="Default">Consider changing the type of parameter {0} in {1} from {2} to its base type {3}. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/3hk32yyz(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Do not pass literals as localized parameters</Name>
+   <Description>Literal strings that are embedded in source code are difficult to localize. Avoid passing literal strings as arguments in circumstances where a localized string is generally expected.</Description>
+   <Resolution Name="KnownValue">Method {0} passes a literal string as parameter '{1}' of a call to {2}. Retrieve the following string(s) from a resource table instead: {3}.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
+   <Name>Do not cast unnecessarily</Name>
+   <Description>Avoid duplicate casts where possible, since there is a cost associated with them.</Description>
+   <Resolution Name="Local">{0}, a variable, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+   <Resolution Name="Parameter">{0}, a parameter, is cast to type {1} multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182271(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Do not catch general exception types</Name>
+   <Description>You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</Description>
+   <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>Do not nest generic types in member signatures</Name>
+   <Description>Avoid API that require users to instantiate a generic type with another generic type as type argument. The syntax gets too complex.</Description>
+   <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065">
+   <Name>Do not raise exceptions in unexpected locations</Name>
+   <Description>Do not explicitly raise exceptions from unexpected locations. There are some methods, such as Equals and GetHashCode, which users do not expect to raise exceptions. Therefore calls to these methods are not commonly wrapped in try catch blocks.</Description>
+   <Resolution Name="NoAllowedExceptions">{0} creates an exception of type {1}. Exceptions should not be raised in this type of method. If this exception instance might be raised, change this method's logic so it no longer raises an exception.</Resolution>
+   <Resolution Name="PropertyGetter">{0} creates an exception of type {1}, an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386039(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error, Warning</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
+   <Name>Do not raise reserved exception types</Name>
+   <Description>User code should not create and raise exceptions of certain types that are reserved by the runtime or which are of a too general exception type. Exception types that are too general include Exception, SystemException, and ApplicationException. Exception types that are reserved by the runtime include ThreadAbortException, OutOfMemoryException, ExecutionEngineException, and IndexOutOfRangeException.</Description>
+   <Resolution Name="TooGeneric">{0} creates an exception of type {1}, an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182338(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameterMoreMeaningfulName">In method {0}, consider providing a more meaningful name than parameter name {1}.</Resolution>
+   <Resolution Name="MethodTypeParameterMoreMeaningfulName">On method {0}, consider providing a more meaningful name than generic type parameter name {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063">
+   <Name>Implement IDisposable correctly</Name>
+   <Description>All IDisposable types should implement the Dispose pattern correctly.</Description>
+   <Resolution Name="DisposeImplementation">Modify {0} so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Resolution>
+   <Resolution Name="IDisposableReimplementation">Remove IDisposable from the list of interfaces implemented by {0} and override the base class Dispose implementation instead.</Resolution>
+   <Resolution Name="ProvideDisposeBool">Provide an overridable implementation of Dispose(bool) on {0} or mark the type as sealed. A call to Dispose(false) should only clean up native resources. A call to Dispose(true) should clean up both managed and native resources.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms244737(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810">
+   <Name>Initialize reference type static fields inline</Name>
+   <Description>Static fields should be initialized when declared. Initializing static data in explicit static constructors results in less performant code.</Description>
+   <Resolution Name="Default">Initialize all static fields in {0} when those fields are declared and remove the explicit static constructor.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182275(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">CriticalWarning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204">
+   <Name>Literals should be spelled correctly</Name>
+   <Description>This rule parses the literal string into words, tokenizing compound words, and checks the spelling of each word/token.</Description>
+   <Resolution Name="Default">Correct the spelling of the unrecognized token '{0}' in the literal '{1}'.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/bb264488(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+   <Name>Mark members as static</Name>
+   <Description>Methods which do not access instance data or call instance methods can be marked as static (Shared in Visual Basic). After doing so, the compiler will emit non-virtual call sites to these members which will prevent a check at runtime for each call that ensures the current object pointer is non-null. This can result in a measurable performance gain for performance-sensitive code. In some cases, the failure to access the current object instance represents a correctness issue.</Description>
+   <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245046(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
+   <Name>Remove unused locals</Name>
+   <Description>Remove locals that are not used or are only assigned to in method implementations.</Description>
+   <Resolution Name="Default">{0} declares a variable, {1}, of type {2}, which is never used or is only assigned to. Use this variable or remove it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182278(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
+   <Name>Review unused parameters</Name>
+   <Description>Review parameters in non-virtual methods that are not used in the method body to ensure no correctness exists around failure to access them. Unused parameters incur maintenance and performance costs. Sometimes a violation of this rule can point to an implementation bug in the method (i.e. the parameter should actually have been used in the method body). Exclude warnings of this rule if the parameter has to exist because of backward compatibility.</Description>
+   <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182268(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+   <Name>Specify CultureInfo</Name>
+   <Description>If an overload exists that takes a CultureInfo argument, it should always be called in favor of an overload that does not. The CultureInfo type contains culture-specific information required for performing numeric and string operations, such as casing, formatting, and string comparisons. In scenarios where conversion and parsing behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'CultureInfo' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182189(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307">
+   <Name>Specify StringComparison</Name>
+   <Description>If an overload exists that takes a StringComparison argument, it should always be called in favor of an overload that does not.</Description>
+   <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, such as when sorting a list of items for display in a list box, specify 'StringComparison.CurrentCulture' or 'StringComparison.CurrentCultureIgnoreCase' as the 'StringComparison' parameter. If comparing case-insensitive identifiers, such as file paths, environment variables, or registry keys and values, specify 'StringComparison.OrdinalIgnoreCase'. Otherwise, if comparing case-sensitive identifiers, specify 'StringComparison.Ordinal'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386080(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="UseOrdinalStringComparison" Category="Microsoft.Globalization" CheckId="CA1309">
+   <Name>Use ordinal StringComparison</Name>
+   <Description>For non-linguistic comparisons, StringComparison.Ordinal or StringComparison.OrdinalIgnoreCase should be used instead of the linguistically-sensitive StringComparison.InvariantCulture.</Description>
+   <Resolution Name="StringComparison">{0} passes '{1}' as the 'StringComparison' parameter to {2}. To perform a non-linguistic comparison, specify 'StringComparison.Ordinal' or 'StringComparison.OrdinalIgnoreCase' instead.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb385972(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+   <Name>Use properties where appropriate</Name>
+   <Description>Properties should be used instead of Get/Set methods in most situations. Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</Description>
+   <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182181(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="11.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validate arguments of public methods</Name>
+   <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>
+   <Resolution Name="Default">In externally visible method {0}, validate parameter '{1}' before using it.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="11.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>
